@@ -7,10 +7,9 @@ import NotFound from '../components/NotFound';
 import { useProject } from '../hooks/useProjects';
 import styles from './ProjectDetailPage.module.css';
 
-function deriveHeroGradient(id: string): string {
+function deriveAccentColor(id: string): string {
   const sum = Array.from(id).reduce((acc, c) => acc + c.charCodeAt(0), 0);
-  const h = sum % 360;
-  return `linear-gradient(140deg, hsl(${h}, 68%, 46%) 0%, hsl(${(h + 22) % 360}, 60%, 35%) 100%)`;
+  return `hsl(${sum % 360}, 55%, 55%)`;
 }
 
 export default function ProjectDetailPage() {
@@ -21,17 +20,24 @@ export default function ProjectDetailPage() {
     return <NotFound message={`No project found with id "${id}"`} />;
   }
 
-  const heroGradient = deriveHeroGradient(project.id);
+  const accent = deriveAccentColor(project.id);
 
   return (
     <div className={styles.page}>
       <ContentLayout>
         <Link to="/" className={styles.back}>
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className={styles.backIcon} aria-hidden="true">
+          <svg
+            className={styles.backIcon}
+            width="14"
+            height="14"
+            viewBox="0 0 14 14"
+            fill="none"
+            aria-hidden="true"
+          >
             <path
               d="M13 7H1M6 2L1 7l5 5"
               stroke="currentColor"
-              strokeWidth="1.6"
+              strokeWidth="1.7"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
@@ -39,8 +45,8 @@ export default function ProjectDetailPage() {
           Back to catalog
         </Link>
 
-        <div className={styles.hero} style={{ background: heroGradient }}>
-          <div className={styles.heroNoise} aria-hidden="true" />
+        <div className={styles.hero}>
+          <div className={styles.heroAccentBlob} style={{ background: accent }} />
           <div className={styles.heroContent}>
             <p className={styles.heroClient}>{project.client}</p>
             <h1 className={styles.heroTitle}>{project.title}</h1>

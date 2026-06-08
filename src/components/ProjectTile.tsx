@@ -5,7 +5,8 @@ import styles from './ProjectTile.module.css';
 
 function deriveAccentColor(id: string): string {
   const sum = Array.from(id).reduce((acc, c) => acc + c.charCodeAt(0), 0);
-  return `hsl(${sum % 360}, 65%, 50%)`;
+  const hue = sum % 360;
+  return `hsl(${hue}, 55%, 45%)`;
 }
 
 interface ProjectTileProps {
@@ -41,11 +42,18 @@ export const ProjectTile = memo(function ProjectTile({
         <div className={styles.footer}>
           <span className={styles.cta}>
             View project
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <svg
+              className={styles.arrowIcon}
+              width="14"
+              height="14"
+              viewBox="0 0 14 14"
+              fill="none"
+              aria-hidden="true"
+            >
               <path
                 d="M1 7h12M8 2l5 5-5 5"
                 stroke="currentColor"
-                strokeWidth="1.6"
+                strokeWidth="1.7"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />

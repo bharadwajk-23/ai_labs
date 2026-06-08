@@ -11,22 +11,18 @@
 
 .code {
   font-size: 7rem;
-  font-weight: 900;
-  letter-spacing: -0.06em;
-  color: var(--color-border);
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  color: var(--color-brand-light);
   line-height: 1;
   margin-bottom: var(--space-5);
-  background: linear-gradient(135deg, var(--color-border) 0%, var(--color-accent-light) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
 
 .title {
   font-size: var(--text-2xl);
   font-weight: 700;
-  letter-spacing: -0.025em;
-  color: var(--color-text-primary);
+  letter-spacing: -0.02em;
+  color: var(--color-brand);
   margin-bottom: var(--space-3);
 }
 
@@ -35,7 +31,7 @@
   color: var(--color-text-secondary);
   margin-bottom: var(--space-8);
   max-width: 420px;
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
 .back {
@@ -47,7 +43,7 @@
   color: white;
   border-radius: var(--radius-md);
   font-size: var(--text-sm);
-  font-weight: 600;
+  font-weight: 700;
   text-decoration: none;
   transition: all var(--transition-fast);
 }
@@ -55,5 +51,5 @@
 .back:hover {
   background: var(--color-accent-hover);
   transform: translateY(-1px);
-  box-shadow: 0 4px 14px rgba(108, 71, 255, 0.4);
+  box-shadow: 0 4px 14px rgba(237, 168, 47, 0.45);
 }

@@ -2,10 +2,10 @@
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
-  padding: var(--space-3) var(--space-5);
+  padding: var(--space-3) var(--space-6);
   border-radius: var(--radius-md);
   font-size: var(--text-sm);
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
   border: none;
   transition: all var(--transition-fast);
@@ -15,23 +15,22 @@
 
 .primary {
   background: var(--color-accent);
-  color: white;
+  color: #ffffff;
 }
 
 .primary:hover {
   background: var(--color-accent-hover);
   transform: translateY(-1px);
-  box-shadow: 0 4px 14px rgba(108, 71, 255, 0.4);
+  box-shadow: 0 4px 14px rgba(237, 168, 47, 0.45);
 }
 
 .ghost {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.12);
   color: white;
   border: 1.5px solid rgba(255, 255, 255, 0.35);
-  backdrop-filter: blur(8px);
 }
 
 .ghost:hover {
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.22);
   border-color: rgba(255, 255, 255, 0.55);
 }

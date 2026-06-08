@@ -13,6 +13,7 @@
   background: var(--color-surface);
   border-radius: var(--radius-md);
   border: 1px solid var(--color-border-light);
+  border-left: 3px solid var(--color-accent);
   box-shadow: var(--shadow-sm);
 }
 
@@ -20,7 +21,7 @@
   flex-shrink: 0;
   width: 20px;
   height: 20px;
-  color: var(--color-accent);
+  color: var(--color-brand);
   margin-top: 1px;
 }
 
