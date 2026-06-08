@@ -1,0 +1,30 @@
+{
+  "title": "MyTruAdvantage (MTA) Health Plan Chatbot",
+  "description": "A friendly, AI-powered chatbot designed to help health plan members and insurance agents quickly find answers to their questions. Users can chat in English or Spanish to get instant information about plan benefits, check what services are covered, and find contact details for local doctors and pharmacies near them.",
+  "features": [
+    {
+      "name": "Instant Benefit Answers",
+      "description": "Answers questions about health insurance coverage (such as dental, vision, hearing, and fitness benefits) instantly, helping users understand their plan without reading through long policy documents."
+    },
+    {
+      "name": "Doctor & Pharmacy Locator",
+      "description": "Helps users find doctors and pharmacies close to their home by city, county, or zip code, showing helpful details like addresses, phone numbers, and special services."
+    },
+    {
+      "name": "Bilingual Support (English & Spanish)",
+      "description": "Chats naturally in both English and Spanish, automatically detecting the user's language and remembering the conversation history for a smooth experience."
+    },
+    {
+      "name": "Quick Connection to Human Support",
+      "description": "Automatically connects users with customer service or registers their enrollment interest when they request extra assistance during the chat."
+    }
+  ],
+  "demo_url": "https://dev.mytruadvantage.com",
+  "client": "SIHO Insurance Services & MyTruAdvantage (MTA)",
+  "highlights": [
+    "Provides instant support 24/7 for health plan and coverage questions.",
+    "Helps members find local doctors and pharmacies in seconds.",
+    "Chats naturally in both English and Spanish.",
+    "Directly connects members to customer support staff when extra help is needed."
+  ]
+}

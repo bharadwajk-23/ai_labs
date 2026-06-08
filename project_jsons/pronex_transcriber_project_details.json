@@ -1,0 +1,49 @@
+{
+  "title": "Pronex Scriber Agent",
+  "description": "An AI-powered real-time medical transcription and clinical documentation platform. Pronex Scriber Agent listens to doctor-patient conversations, transcribes them live via a browser extension, and automatically generates six formats of clinical summaries — from quick references to full SOAP notes — using a multi-stage LLM pipeline. Built-in PHI masking ensures patient data never leaves the pipeline unprotected, and an asynchronous session architecture allows clinicians to retrieve structured reports the moment they are ready.",
+  "features": [
+    {
+      "name": "Real-Time Speech-to-Text Transcription",
+      "description": "Streams live audio from a Chrome extension to the backend over WebSocket and converts it to text in real time using the Deepgram API, delivering interim and final transcript segments as the conversation unfolds."
+    },
+    {
+      "name": "Multi-Format Clinical Summarization",
+      "description": "Processes the completed transcript through a LangGraph pipeline to produce six distinct summary formats: Quick Reference, Brief Summary, Goldilocks Summary, Detailed Summary, Super Detailed Summary, and structured SOAP Notes — giving clinicians the right level of detail for every workflow."
+    },
+    {
+      "name": "PHI Masking & Data Privacy",
+      "description": "Automatically detects and redacts Protected Health Information (PHI) from raw transcripts before they are sent to any external LLM, keeping patient data compliant with healthcare privacy requirements."
+    },
+    {
+      "name": "LangGraph-Based Generation Pipeline",
+      "description": "Orchestrates summary creation through a three-node workflow: a Masker node that redacts PHI, a Summary Generator node that calls the LLM with a structured prompt, and a Post-Processor node that parses the JSON response into individual summary sections."
+    },
+    {
+      "name": "Asynchronous Session Architecture",
+      "description": "Each transcription session is assigned a UUID. Summary generation runs as a background task, and clients poll dedicated REST endpoints per summary type to retrieve results as each section completes — keeping the UI responsive throughout."
+    },
+    {
+      "name": "Chrome Extension Audio Capture",
+      "description": "A lightweight React and Vite Chrome extension captures microphone audio directly in the browser and streams it to the backend, requiring no additional hardware or standalone recording software."
+    },
+    {
+      "name": "Dual LLM Provider Support",
+      "description": "Supports switching between Google Gemini (primary) and Groq (fallback) via a single environment variable, ensuring continuity of service if one provider is unavailable."
+    },
+    {
+      "name": "Session Dashboard & History",
+      "description": "A web frontend provides a login-protected dashboard where users can review past transcription sessions, replay generated summaries, and track clinical documentation history."
+    }
+  ],
+  "demo_url": "https://transcribes-pronex.youngsoft.com/",
+  "client": "Pronex / Youngsoft India",
+  "highlights": [
+    "Transcribes doctor-patient conversations live in the browser with no external app install required.",
+    "Generates six clinically relevant summary formats — including SOAP Notes — from a single recorded session.",
+    "Built-in PHI masking keeps patient data protected before any content reaches an external LLM.",
+    "Flexible dual-LLM architecture (Google Gemini + Groq fallback) ensures high availability.",
+    "Fully asynchronous pipeline delivers summaries section-by-section as soon as each is ready.",
+    "Cross-platform delivery: Chrome extension, web app, and REST API work together seamlessly.",
+    "Already live in production at transcribes-pronex.youngsoft.com on AWS EC2."
+  ]
+}

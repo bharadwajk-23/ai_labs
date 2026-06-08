@@ -1,0 +1,127 @@
+[
+  {
+    "id": "pronex-scriber-agent",
+    "title": "Pronex Scriber Agent",
+    "description": "An AI-powered real-time medical transcription and clinical documentation platform. Pronex Scriber Agent listens to doctor-patient conversations, transcribes them live via a browser extension, and automatically generates six formats of clinical summaries — from quick references to full SOAP notes — using a multi-stage LLM pipeline. Built-in PHI masking ensures patient data never leaves the pipeline unprotected, and an asynchronous session architecture allows clinicians to retrieve structured reports the moment they are ready.",
+    "client": "Pronex / Youngsoft India",
+    "demo_url": "https://transcribes-pronex.youngsoft.com/",
+    "highlights": [
+      "Transcribes doctor-patient conversations live in the browser with no external app install required.",
+      "Generates six clinically relevant summary formats — including SOAP Notes — from a single recorded session.",
+      "Built-in PHI masking keeps patient data protected before any content reaches an external LLM.",
+      "Flexible dual-LLM architecture (Google Gemini + Groq fallback) ensures high availability.",
+      "Fully asynchronous pipeline delivers summaries section-by-section as soon as each is ready.",
+      "Cross-platform delivery: Chrome extension, web app, and REST API work together seamlessly.",
+      "Already live in production at transcribes-pronex.youngsoft.com on AWS EC2."
+    ],
+    "features": [
+      {
+        "name": "Real-Time Speech-to-Text Transcription",
+        "description": "Streams live audio from a Chrome extension to the backend over WebSocket and converts it to text in real time using the Deepgram API, delivering interim and final transcript segments as the conversation unfolds."
+      },
+      {
+        "name": "Multi-Format Clinical Summarization",
+        "description": "Processes the completed transcript through a LangGraph pipeline to produce six distinct summary formats: Quick Reference, Brief Summary, Goldilocks Summary, Detailed Summary, Super Detailed Summary, and structured SOAP Notes — giving clinicians the right level of detail for every workflow."
+      },
+      {
+        "name": "PHI Masking & Data Privacy",
+        "description": "Automatically detects and redacts Protected Health Information (PHI) from raw transcripts before they are sent to any external LLM, keeping patient data compliant with healthcare privacy requirements."
+      },
+      {
+        "name": "LangGraph-Based Generation Pipeline",
+        "description": "Orchestrates summary creation through a three-node workflow: a Masker node that redacts PHI, a Summary Generator node that calls the LLM with a structured prompt, and a Post-Processor node that parses the JSON response into individual summary sections."
+      },
+      {
+        "name": "Asynchronous Session Architecture",
+        "description": "Each transcription session is assigned a UUID. Summary generation runs as a background task, and clients poll dedicated REST endpoints per summary type to retrieve results as each section completes — keeping the UI responsive throughout."
+      },
+      {
+        "name": "Chrome Extension Audio Capture",
+        "description": "A lightweight React and Vite Chrome extension captures microphone audio directly in the browser and streams it to the backend, requiring no additional hardware or standalone recording software."
+      },
+      {
+        "name": "Dual LLM Provider Support",
+        "description": "Supports switching between Google Gemini (primary) and Groq (fallback) via a single environment variable, ensuring continuity of service if one provider is unavailable."
+      },
+      {
+        "name": "Session Dashboard & History",
+        "description": "A web frontend provides a login-protected dashboard where users can review past transcription sessions, replay generated summaries, and track clinical documentation history."
+      }
+    ]
+  },
+  {
+    "id": "mta-health-plan-chatbot",
+    "title": "MyTruAdvantage Health Plan Chatbot",
+    "description": "A friendly, AI-powered chatbot designed to help health plan members and insurance agents quickly find answers to their questions. Users can chat in English or Spanish to get instant information about plan benefits, check what services are covered, and find contact details for local doctors and pharmacies near them.",
+    "client": "SIHO Insurance Services & MyTruAdvantage",
+    "demo_url": "https://dev.mytruadvantage.com",
+    "highlights": [
+      "Provides instant support 24/7 for health plan and coverage questions.",
+      "Helps members find local doctors and pharmacies in seconds.",
+      "Chats naturally in both English and Spanish.",
+      "Directly connects members to customer support staff when extra help is needed."
+    ],
+    "features": [
+      {
+        "name": "Instant Benefit Answers",
+        "description": "Answers questions about health insurance coverage (such as dental, vision, hearing, and fitness benefits) instantly, helping users understand their plan without reading through long policy documents."
+      },
+      {
+        "name": "Doctor & Pharmacy Locator",
+        "description": "Helps users find doctors and pharmacies close to their home by city, county, or zip code, showing helpful details like addresses, phone numbers, and special services."
+      },
+      {
+        "name": "Bilingual Support (English & Spanish)",
+        "description": "Chats naturally in both English and Spanish, automatically detecting the user's language and remembering the conversation history for a smooth experience."
+      },
+      {
+        "name": "Quick Connection to Human Support",
+        "description": "Automatically connects users with customer service or registers their enrollment interest when they request extra assistance during the chat."
+      }
+    ]
+  },
+  {
+    "id": "ysiras-recruitment-assessment",
+    "title": "YSIRas — Recruitment Assessment System",
+    "description": "A modern, AI-powered hiring and video interview platform designed to simplify talent acquisition. YSIRas automates the most time-consuming parts of recruiting, from reading job descriptions and screening applicant resumes to scheduling secure video interviews and analyzing candidate skills. It provides hiring managers and recruitment teams with a collaborative dashboard to coordinate vacancies, monitor screening progress, and export comprehensive assessment reports, helping organizations hire top talent up to 70% faster.",
+    "client": "Youngsoft India & Enterprise Recruiting Partners",
+    "demo_url": "https://recruitment.youngsoft.in",
+    "highlights": [
+      "Reduces manual resume screening and filtering time by more than 80%.",
+      "Standardizes interviewer evaluations and scores to eliminate hiring bias.",
+      "Ensures secure candidate screening with single-use meeting links and expiration controls.",
+      "Includes a fully collaborative dashboard for recruiting teams and hiring managers.",
+      "Accessible on any device, providing a clean experience for candidates and recruiters alike."
+    ],
+    "features": [
+      {
+        "name": "Smart Job Requirement Analyzer",
+        "description": "Automatically reviews uploaded job descriptions to identify key requirements, such as required technical skills, minimum years of experience, and educational qualifications, setting a clear benchmark for screening."
+      },
+      {
+        "name": "AI Resume Screening & Ranking",
+        "description": "Scans and matches applicant resumes against job requirements in seconds, scoring and ranking candidates based on how well their experience, education, and skills align with the open position."
+      },
+      {
+        "name": "Integrated Video Interview Rooms",
+        "description": "Creates secure, high-definition video meeting rooms directly inside the web browser. Candidates and recruiters can connect face-to-face for interviews without installing any external apps or downloads."
+      },
+      {
+        "name": "Secure, Self-Expiring Interview Links",
+        "description": "Generates private, secure interview invitation links for shortlisted candidates. These links automatically expire after a set time to maintain testing schedules and security."
+      },
+      {
+        "name": "Automated Candidate Evaluation",
+        "description": "Provides instant, structured grading on candidate competencies — such as technical skills, communication, and problem-solving — immediately after the interview, giving hiring teams a standardized scorecard."
+      },
+      {
+        "name": "Hiring Team Collaboration Hub",
+        "description": "Offers a central dashboard where managers can assign jobs to recruiters, check the status of applicants, track team metrics (resumes reviewed, interviews scheduled, offers sent), and download candidate reports."
+      },
+      {
+        "name": "Applicant Tracking System (ATS) Integration",
+        "description": "Connects seamlessly with existing HR software and Applicant Tracking Systems, allowing candidate data, status updates, and scores to sync automatically between platforms."
+      }
+    ]
+  }
+]

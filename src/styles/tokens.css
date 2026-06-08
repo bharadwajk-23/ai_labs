@@ -1,0 +1,68 @@
+:root {
+  /* Brand */
+  --color-accent: #6c47ff;
+  --color-accent-light: #ede9ff;
+  --color-accent-hover: #5535e6;
+  --color-accent-dim: rgba(108, 71, 255, 0.12);
+
+  /* Backgrounds */
+  --color-bg: #f4f3ff;
+  --color-surface: #ffffff;
+  --color-surface-raised: #fdfcff;
+
+  /* Text */
+  --color-text-primary: #1a1523;
+  --color-text-secondary: #6e6781;
+  --color-text-muted: #a09ab8;
+
+  /* Borders */
+  --color-border: #ddd8f0;
+  --color-border-light: #eeeafc;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 4px rgba(108, 71, 255, 0.07), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 20px rgba(108, 71, 255, 0.10), 0 2px 6px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 16px 48px rgba(108, 71, 255, 0.14), 0 4px 12px rgba(0, 0, 0, 0.06);
+  --shadow-xl: 0 32px 64px rgba(108, 71, 255, 0.18), 0 8px 16px rgba(0, 0, 0, 0.07);
+
+  /* Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-2xl: 32px;
+  --radius-full: 9999px;
+
+  /* Type scale */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+  --text-6xl: 3.75rem;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: 150ms var(--ease-in-out);
+  --transition-base: 250ms var(--ease-in-out);
+  --transition-slow: 380ms var(--ease-in-out);
+}

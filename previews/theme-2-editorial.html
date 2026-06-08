@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Theme Preview — Warm Editorial</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:#f7f3ec;color:#1a1008;font-family:'Source Serif 4',Georgia,serif;min-height:100vh}
+
+/* nav */
+nav{display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:64px;border-bottom:1.5px solid #1a1008}
+.logo-name{font-family:'Playfair Display',Georgia,serif;font-size:15px;font-weight:700;letter-spacing:0.04em;color:#1a1008}
+.nav-tag{font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#8a7060}
+
+/* hero */
+.hero{padding:80px 48px 64px;border-bottom:1.5px solid #1a1008}
+.eyebrow{font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#b04030;margin-bottom:24px;font-family:'Source Serif 4',serif}
+h1{font-family:'Playfair Display',Georgia,serif;font-size:72px;font-weight:900;line-height:1;letter-spacing:-0.02em;color:#1a1008;margin-bottom:6px}
+h1 em{font-style:italic;color:#b04030}
+.tagline{font-size:15px;color:#5a4030;line-height:1.7;max-width:500px;margin-top:20px;font-style:italic}
+
+/* grid */
+.grid-section{padding:48px 48px 64px}
+.section-header{display:flex;align-items:baseline;gap:16px;margin-bottom:28px;padding-bottom:12px;border-bottom:1.5px solid #1a1008}
+.section-title{font-family:'Playfair Display',serif;font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#1a1008}
+.section-count{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#8a7060}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-left:1.5px solid #1a1008}
+
+/* card */
+.card{border-right:1.5px solid #1a1008;border-bottom:1.5px solid #1a1008;padding:28px 24px;transition:background 0.2s;cursor:pointer}
+.card:hover{background:#fffef7}
+.card-number{font-family:'Playfair Display',serif;font-size:11px;color:#c08070;letter-spacing:0.1em;margin-bottom:14px}
+.card-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;line-height:1.25;color:#1a1008;margin-bottom:10px}
+.card-client{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#8a7060;margin-bottom:14px}
+.card-rule{height:1.5px;background:#1a1008;width:32px;margin-bottom:14px}
+.card-desc{font-size:12px;color:#5a4030;line-height:1.7;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.card-cta{margin-top:18px;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#b04030;font-weight:600}
+</style>
+</head>
+<body>
+<nav>
+  <div class="logo-name">Youngsoft AI Labs</div>
+  <div class="nav-tag">AI Project Portfolio</div>
+</nav>
+
+<div class="hero">
+  <div class="eyebrow">Youngsoft India · AI Division</div>
+  <h1>AI<br/><em>Projects</em><br/>Portfolio</h1>
+  <p class="tagline">Production AI systems built for healthcare, insurance, and enterprise recruiting — shipped and live.</p>
+</div>
+
+<div class="grid-section">
+  <div class="section-header">
+    <span class="section-title">Projects</span>
+    <span class="section-count">3 entries</span>
+  </div>
+  <div class="grid">
+    <div class="card">
+      <div class="card-number">No. 01</div>
+      <div class="card-title">Pronex Scriber Agent</div>
+      <div class="card-client">Pronex / Youngsoft India</div>
+      <div class="card-rule"></div>
+      <div class="card-desc">AI-powered real-time medical transcription platform that generates six clinical summary formats via a multi-stage LLM pipeline with built-in PHI masking.</div>
+      <div class="card-cta">Read more →</div>
+    </div>
+    <div class="card">
+      <div class="card-number">No. 02</div>
+      <div class="card-title">MTA Health Plan Chatbot</div>
+      <div class="card-client">SIHO Insurance Services</div>
+      <div class="card-rule"></div>
+      <div class="card-desc">Bilingual AI chatbot for health plan members, delivering instant benefit answers, doctor & pharmacy locator, and seamless escalation to human support.</div>
+      <div class="card-cta">Read more →</div>
+    </div>
+    <div class="card">
+      <div class="card-number">No. 03</div>
+      <div class="card-title">YSIRas Recruitment System</div>
+      <div class="card-client">Youngsoft India</div>
+      <div class="card-rule"></div>
+      <div class="card-desc">AI-powered hiring platform automating resume screening, video interviews, and candidate evaluation — reducing manual screening time by over 80%.</div>
+      <div class="card-cta">Read more →</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
