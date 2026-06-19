@@ -1,13 +1,7 @@
 import { memo, type CSSProperties } from 'react';
 import { Link } from 'react-router-dom';
-import { Badge } from './ui/Badge';
+import { useScrollReveal } from '../hooks/useScrollReveal';
 import styles from './ProjectTile.module.css';
-
-function deriveAccentColor(id: string): string {
-  const sum = Array.from(id).reduce((acc, c) => acc + c.charCodeAt(0), 0);
-  const hue = sum % 360;
-  return `hsl(${hue}, 55%, 45%)`;
-}
 
 interface ProjectTileProps {
   id: string;
@@ -15,6 +9,13 @@ interface ProjectTileProps {
   client: string;
   description: string;
   index: number;
+  image: string;
+  color: string;
+  gradient: string;
+  capabilities: string[];
+  demo_url?: string;
+  use_iframe?: boolean;
+  sales_tagline?: string;
 }
 
 export const ProjectTile = memo(function ProjectTile({
@@ -23,25 +24,83 @@ export const ProjectTile = memo(function ProjectTile({
   client,
   description,
   index,
+  image,
+  color,
+  gradient,
+  capabilities,
+  sales_tagline,
 }: ProjectTileProps) {
-  const accent = deriveAccentColor(id);
+  const [tileRef, isRevealed] = useScrollReveal<HTMLAnchorElement>(0.05, true);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (!tileRef.current) return;
+    const rect = tileRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    tileRef.current.style.setProperty('--mouse-x', `${x}px`);
+    tileRef.current.style.setProperty('--mouse-y', `${y}px`);
+
+    // 3D Tilt calculation relative to center
+    const width = rect.width;
+    const height = rect.height;
+    const centerX = width / 2;
+    const centerY = height / 2;
+    
+    // Normalized delta (-0.5 to 0.5)
+    const deltaX = (x - centerX) / width;
+    const deltaY = (y - centerY) / height;
+    
+    // Calculate rotation angles (max 6deg tilt for a premium, subtle effect)
+    const rotateY = (deltaX * 6).toFixed(2);
+    const rotateX = -(deltaY * 6).toFixed(2);
+    
+    tileRef.current.style.setProperty('--tilt-x', `${rotateX}deg`);
+    tileRef.current.style.setProperty('--tilt-y', `${rotateY}deg`);
+  };
+
+  const handleMouseLeave = () => {
+    if (!tileRef.current) return;
+    tileRef.current.style.setProperty('--tilt-x', '0deg');
+    tileRef.current.style.setProperty('--tilt-y', '0deg');
+  };
 
   return (
     <Link
       to={`/projects/${id}`}
-      className={styles.tile}
-      style={{ '--delay': `${index * 0.09}s` } as CSSProperties}
+      ref={tileRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className={`${styles.tile} reveal-item ${isRevealed ? 'revealed' : ''}`}
+      style={{
+        '--delay': `${(index % 3) * 0.08}s`, // staggered transition delay for rows of 3
+        '--accent-color': color,
+        '--accent-gradient': gradient,
+      } as CSSProperties}
     >
-      <div className={styles.accentBar} style={{ background: accent }} />
+      <div className={styles.imageWrapper}>
+        <img src={image} alt={title} className={styles.image} data-project-id={id} loading="lazy" />
+        <div className={styles.imageOverlay} />
+        <span className={styles.clientTag}>{client}</span>
+      </div>
+
       <div className={styles.body}>
-        <div className={styles.header}>
-          <h2 className={styles.title}>{title}</h2>
-          <Badge>{client}</Badge>
-        </div>
+        <h3 className={styles.title}>{title}</h3>
+        
+        {sales_tagline && (
+          <p className={styles.salesTagline}>{sales_tagline}</p>
+        )}
+        
         <p className={styles.description}>{description}</p>
+        
+        <div className={styles.techStack}>
+          {capabilities.map(cap => (
+            <span key={cap} className={styles.techBadge}>{cap}</span>
+          ))}
+        </div>
+
         <div className={styles.footer}>
           <span className={styles.cta}>
-            View project
+            Explore Case Study
             <svg
               className={styles.arrowIcon}
               width="14"
@@ -51,9 +110,9 @@ export const ProjectTile = memo(function ProjectTile({
               aria-hidden="true"
             >
               <path
-                d="M1 7h12M8 2l5 5-5 5"
+                d="M2 7h10M8 2l5 5-5 5"
                 stroke="currentColor"
-                strokeWidth="1.7"
+                strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
@@ -61,6 +120,7 @@ export const ProjectTile = memo(function ProjectTile({
           </span>
         </div>
       </div>
+      <div className={styles.spotlight} />
     </Link>
   );
 });

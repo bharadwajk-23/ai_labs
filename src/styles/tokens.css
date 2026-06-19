@@ -1,34 +1,4 @@
 :root {
-  /* ── Youngsoft brand palette ─────────────────────── */
-  --color-brand:        #1b4962;   /* deep navy teal  — primary */
-  --color-brand-dark:   #143a50;   /* darker navy     — hover states */
-  --color-brand-mid:    #2a6080;   /* mid navy        — secondary text */
-  --color-brand-light:  #e6f0f6;   /* very light blue — tinted backgrounds */
-
-  --color-accent:       #eda82f;   /* golden amber    — CTAs, highlights */
-  --color-accent-hover: #d4921a;   /* darker gold     — CTA hover */
-  --color-accent-light: #fdf4df;   /* pale gold tint  — badge backgrounds */
-
-  /* ── Backgrounds ─────────────────────────────────── */
-  --color-bg:           #f4f8fb;   /* section bg, light blue-gray */
-  --color-surface:      #ffffff;
-  --color-hero-bg:      #1b4962;   /* detail page hero */
-
-  /* ── Text ────────────────────────────────────────── */
-  --color-text-primary:   #181818;
-  --color-text-secondary: #4a6070;
-  --color-text-muted:     #85a0b0;
-
-  /* ── Borders ─────────────────────────────────────── */
-  --color-border:       #d6e4ed;
-  --color-border-light: #eaf2f7;
-
-  /* ── Shadows (navy-tinted) ───────────────────────── */
-  --shadow-sm: 0 2px 8px  rgba(27, 73, 98, 0.08);
-  --shadow-md: 0 4px 20px rgba(27, 73, 98, 0.11);
-  --shadow-lg: 0 12px 40px rgba(27, 73, 98, 0.15);
-  --shadow-xl: 0 24px 60px rgba(27, 73, 98, 0.20);
-
   /* ── Spacing ─────────────────────────────────────── */
   --space-1:  0.25rem;
   --space-2:  0.5rem;
@@ -45,10 +15,10 @@
   --space-24: 6rem;
 
   /* ── Radius ──────────────────────────────────────── */
-  --radius-sm:   4px;
-  --radius-md:   8px;
-  --radius-lg:   12px;
-  --radius-xl:   20px;
+  --radius-sm:   6px;
+  --radius-md:   12px;
+  --radius-lg:   18px;
+  --radius-xl:   24px;
   --radius-full: 9999px;
 
   /* ── Type scale ──────────────────────────────────── */
@@ -59,13 +29,134 @@
   --text-xl:   1.25rem;
   --text-2xl:  1.5rem;
   --text-3xl:  1.875rem;
-  --text-4xl:  2.25rem;
-  --text-5xl:  3rem;
+  --text-4xl:  2.5rem;
+  --text-5xl:  3.5rem;
 
   /* ── Motion ──────────────────────────────────────── */
-  --ease-out:    cubic-bezier(0, 0, 0.2, 1);
+  --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-fast: 150ms var(--ease-in-out);
-  --transition-base: 250ms var(--ease-in-out);
-  --transition-slow: 380ms var(--ease-in-out);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --transition-fast: 180ms var(--ease-in-out);
+  --transition-base: 300ms var(--ease-in-out);
+  --transition-slow: 500ms var(--ease-in-out);
+  --transition-spring: 420ms var(--ease-spring);
+  --transition-spring-slow: 680ms var(--ease-spring);
+}
+
+/* ==========================================================================
+   THEME: OBSIDIAN (Default Indigo Dark)
+   ========================================================================== */
+:root, [data-theme="obsidian"] {
+  /* ── Colors ──────────────────────────────────────── */
+  --color-brand:        #6366f1;   /* Indigo - primary */
+  --color-brand-dark:   #4f46e5;
+  --color-brand-mid:    #818cf8;
+  --color-brand-light:  rgba(99, 102, 241, 0.08);
+  --color-brand-text:   #ffffff;
+
+  --color-accent:       #f59e0b;   /* Amber */
+  --color-accent-hover: #d97706;
+  --color-accent-light: rgba(245, 158, 11, 0.1);
+
+  --color-bg:           #030712;   /* Deep obsidian black */
+  --color-surface:      #0b0f19;   /* Slate 950 */
+  --color-surface-hover:#111827;   /* Gray 900 */
+  --color-hero-bg:      #060810;
+  --color-hero-glow:    rgba(99, 102, 241, 0.06);
+  --color-grid-dots:    rgba(255, 255, 255, 0.04);
+
+  --color-text-primary:   #f9fafb;
+  --color-text-secondary: #9ca3af;
+  --color-text-muted:     #4b5563;
+
+  --color-border:       #1e293b;   /* Slate 800 */
+  --color-border-light: #111827;
+  --color-border-hover: #374151;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 12px 30px rgba(0, 0, 0, 0.7), 0 0 15px rgba(99, 102, 241, 0.02);
+  --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 35px rgba(99, 102, 241, 0.05);
+
+  /* New themed variables */
+  --color-nav-bg:         rgba(3, 7, 18, 0.7);
+  --color-nav-border:     rgba(255, 255, 255, 0.06);
+  --color-footer-bg:      #060810;
+  --color-translucent-bg: rgba(255, 255, 255, 0.03);
+  --color-translucent-bg-light: rgba(255, 255, 255, 0.01);
+  --color-translucent-border: rgba(255, 255, 255, 0.06);
+  --color-translucent-hover: rgba(255, 255, 255, 0.05);
+  --color-spotlight:      rgba(255, 255, 255, 0.05);
+  --color-stats-bg:       rgba(11, 15, 25, 0.4);
+  --logo-text-color:      #f9fafb;
+  --logo-labs-color:      var(--color-brand-mid);
+  
+  --hero-bg-opacity:      0.16;
+  --hero-bg-blend:        screen;
+  --hero-bg-filter:       saturate(1.1) brightness(0.95);
+
+  --color-card-glow:      rgba(99, 102, 241, 0.12);
+  --glass-bg:             rgba(11, 15, 25, 0.65);
+  --glass-border:         rgba(255, 255, 255, 0.08);
+  --glass-blur:           blur(16px);
+}
+
+
+
+/* ==========================================================================
+   THEME: LIGHT SLATE (Premium Accessibility Light)
+   ========================================================================== */
+[data-theme="light"] {
+  /* ── Colors ──────────────────────────────────────── */
+  --color-brand:        #4f46e5;   /* Indigo */
+  --color-brand-dark:   #3730a3;
+  --color-brand-mid:    #6366f1;
+  --color-brand-light:  rgba(99, 102, 241, 0.05);
+  --color-brand-text:   #ffffff;
+
+  --color-accent:       #e28704;   /* Darker Amber (contrast safe) */
+  --color-accent-hover: #b46b02;
+  --color-accent-light: rgba(226, 135, 4, 0.08);
+
+  --color-bg:           #f8fafc;   /* Soft white/slate */
+  --color-surface:      #ffffff;
+  --color-surface-hover:#f1f5f9;   /* Slate 100 */
+  --color-hero-bg:      #edf2f7;   /* Light gray */
+  --color-hero-glow:    rgba(99, 102, 241, 0.04);
+  --color-grid-dots:    rgba(0, 0, 0, 0.05);
+
+  --color-text-primary:   #0f172a;   /* Slate 900 */
+  --color-text-secondary: #334155;   /* Slate 700 */
+  --color-text-muted:     #64748b;   /* Slate 500 */
+
+  --color-border:       #e2e8f0;   /* Slate 200 */
+  --color-border-light: #f1f5f9;
+  --color-border-hover: #cbd5e1;
+
+  --shadow-sm: 0 1px 2px rgba(99, 102, 241, 0.02);
+  --shadow-md: 0 4px 12px rgba(99, 102, 241, 0.04);
+  --shadow-lg: 0 10px 25px rgba(99, 102, 241, 0.05);
+  --shadow-xl: 0 20px 40px rgba(99, 102, 241, 0.08);
+
+  /* New themed variables */
+  --color-nav-bg:         rgba(248, 250, 252, 0.85);
+  --color-nav-border:     rgba(15, 23, 42, 0.08);
+  --color-footer-bg:      #edf2f7;
+  --color-translucent-bg: rgba(15, 23, 42, 0.03);
+  --color-translucent-bg-light: rgba(15, 23, 42, 0.01);
+  --color-translucent-border: rgba(15, 23, 42, 0.08);
+  --color-translucent-hover: rgba(15, 23, 42, 0.05);
+  --color-spotlight:      rgba(99, 102, 241, 0.05);
+  --color-stats-bg:       rgba(226, 232, 240, 0.5);
+  --logo-text-color:      #0f4c81;
+  --logo-labs-color:      #0f4c81;
+  
+  --hero-bg-opacity:      0.05;
+  --hero-bg-blend:        multiply;
+  --hero-bg-filter:       invert(1) brightness(1.05) contrast(0.9);
+
+  --color-card-glow:      rgba(99, 102, 241, 0.04);
+  --glass-bg:             rgba(255, 255, 255, 0.75);
+  --glass-border:         rgba(15, 23, 42, 0.08);
+  --glass-blur:           blur(16px);
 }

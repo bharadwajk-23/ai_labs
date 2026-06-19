@@ -5,24 +5,41 @@
   background: var(--color-bg);
 }
 
-/* ── Nav ──────────────────────────────────────────── */
+
+
 .nav {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: #ffffff;
-  border-bottom: 1px solid var(--color-border-light);
-  box-shadow: 0 1px 4px rgba(27, 73, 98, 0.06);
+  background: var(--color-nav-bg, rgba(3, 7, 18, 0.65));
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-nav-border, rgba(255, 255, 255, 0.06));
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+  transition: background var(--transition-base), backdrop-filter var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
+}
+
+.navScrolled {
+  background: var(--glass-bg, rgba(3, 7, 18, 0.82)) !important;
+  backdrop-filter: var(--glass-blur, blur(16px)) !important;
+  -webkit-backdrop-filter: var(--glass-blur, blur(16px)) !important;
+  border-bottom: 1px solid var(--glass-border, rgba(255, 255, 255, 0.08)) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25), 0 0 15px var(--color-card-glow, rgba(99, 102, 241, 0.03)) !important;
 }
 
 .navInner {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 var(--space-8);
-  height: 68px;
+  height: 72px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  transition: height var(--transition-base);
+}
+
+.navScrolled .navInner {
+  height: 58px;
 }
 
 .brand {
@@ -32,51 +49,218 @@
   text-decoration: none;
 }
 
-.brandMark {
-  width: 36px;
-  height: 36px;
+.logoContainer {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.logoMarkSvg {
+  flex-shrink: 0;
+  transition: transform var(--transition-fast), filter var(--transition-fast);
+}
+
+.brand:hover .logoMarkSvg {
+  transform: scale(1.08) rotate(3deg);
+  filter: drop-shadow(0 0 8px var(--color-brand-mid));
+}
+
+.logoText {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.logoWordmark {
+  display: flex;
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.logoYoung {
+  color: var(--logo-text-color, var(--color-text-primary));
+  transition: color var(--transition-base);
+}
+
+.logoSoft {
+  color: var(--logo-text-color, var(--color-text-primary));
+  transition: color var(--transition-base);
+}
+
+.logoUnderline {
+  display: flex;
+  height: 2px;
+  width: 100%;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  border-radius: 1px;
+  overflow: hidden;
+}
+
+.lineOrange {
+  flex: 5.5;
+  background: #f26522;
+}
+
+.lineGreen {
+  flex: 4.5;
+  background: #107c41;
+}
+
+.logoLabs {
+  font-family: 'Inter', 'Plus Jakarta Sans', sans-serif;
+  font-size: 9px;
+  font-weight: 800;
+  color: var(--logo-labs-color, var(--color-brand-mid));
+  letter-spacing: 0.22em;
+  line-height: 1;
+  text-align: right;
+  align-self: flex-end;
+  transition: color var(--transition-base);
+}
+
+.navSeparator {
+  width: 1px;
+  height: 28px;
+  background: var(--color-translucent-border, rgba(255, 255, 255, 0.08));
+  margin: 0 var(--space-3);
+}
+
+.navDescription {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
+.navTitle {
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--color-text-primary) 30%, var(--color-brand-mid) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.navSubtitle {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 550px;
+  line-height: 1.2;
+  opacity: 0.85;
+}
+
+.navRight {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.navCtaBtn {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  color: var(--color-brand-text, #ffffff);
   background: var(--color-brand);
+  border: 1px solid var(--color-brand-dark);
+  padding: 8px 16px;
   border-radius: var(--radius-md);
+  box-shadow: 0 2px 8px var(--color-card-glow, rgba(99, 102, 241, 0.15));
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.navCtaBtn:hover {
+  background: var(--color-brand-dark);
+  box-shadow: 0 4px 14px var(--color-card-glow, rgba(99, 102, 241, 0.3));
+  transform: translateY(-1px);
+}
+
+.navCtaBtn:active {
+  transform: translateY(1px);
+}
+
+.themeToggle {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--color-translucent-bg, rgba(255, 255, 255, 0.03));
+  border: 1px solid var(--color-translucent-border, rgba(255, 255, 255, 0.08));
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.03em;
+  cursor: pointer;
+  padding: 0;
+  outline: none;
+  transition: all var(--transition-fast);
 }
 
-.brandText {
+.themeToggle:hover {
+  transform: scale(1.08);
+  background: var(--color-translucent-bg-hover, rgba(255, 255, 255, 0.06));
+  border-color: #6366f1;
+  box-shadow: 0 0 15px rgba(99, 102, 241, 0.35);
+}
+
+:global([data-theme="light"]) .themeToggle {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+:global([data-theme="light"]) .themeToggle:hover {
+  background: rgba(0, 0, 0, 0.08);
+  border-color: #f59e0b;
+  box-shadow: 0 0 15px rgba(245, 158, 11, 0.25);
+}
+
+.iconWrapper {
   display: flex;
-  flex-direction: column;
-  line-height: 1.15;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--transition-base);
 }
 
-.brandName {
-  font-size: var(--text-sm);
-  font-weight: 700;
-  color: var(--color-brand);
-  letter-spacing: -0.01em;
+.themeToggle:active .iconWrapper {
+  transform: scale(0.9) rotate(45deg);
 }
 
-.brandSub {
-  font-size: 10px;
-  font-weight: 500;
-  color: var(--color-text-muted);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+.themeIcon {
+  stroke: #818cf8;
+  filter: drop-shadow(0 0 2px rgba(129, 140, 248, 0.5));
+  transition: transform 0.4s var(--ease-out), stroke var(--transition-fast);
+  animation: iconEntrance 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: block;
 }
 
-.navBadge {
-  font-size: var(--text-xs);
-  font-weight: 600;
-  color: var(--color-brand);
-  background: var(--color-brand-light);
-  padding: 4px 10px;
-  border-radius: var(--radius-full);
-  letter-spacing: 0.01em;
-  border: 1px solid var(--color-border);
+:global([data-theme="light"]) .themeIcon {
+  stroke: #f59e0b;
+  filter: drop-shadow(0 0 2px rgba(245, 158, 11, 0.4));
 }
+
+@keyframes iconEntrance {
+  from {
+    opacity: 0;
+    transform: scale(0.5) rotate(-180deg);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
 
 /* ── Main & footer ────────────────────────────────── */
 .main {
@@ -84,9 +268,24 @@
 }
 
 .footer {
-  background: var(--color-brand);
-  padding: var(--space-8) var(--space-8);
+  background: var(--color-footer-bg, #060810);
+  border-top: 1px solid var(--color-translucent-border, rgba(255, 255, 255, 0.04));
+  padding: var(--space-10) var(--space-8);
   text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-brand-mid), var(--color-accent), transparent);
+  background-size: 200% 100%;
+  animation: gradient-shift 6s ease infinite;
 }
 
 .footerInner {
@@ -95,16 +294,127 @@
 }
 
 .footerText {
-  font-size: var(--text-sm);
-  color: rgba(255, 255, 255, 0.55);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  letter-spacing: 0.01em;
 }
 
 @media (max-width: 640px) {
   .navInner {
     padding: 0 var(--space-4);
   }
+}
 
-  .navBadge {
+@media (max-width: 768px) {
+  .navSeparator,
+  .navDescription {
     display: none;
+  }
+}
+
+/* ── Welcome Splash Screen ───────────────────────── */
+.splash {
+  position: fixed;
+  inset: 0;
+  background: #030712;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 1;
+}
+
+.fadeOut {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.splashContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.splashLogo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: splashPulse 2s infinite ease-in-out;
+  margin-bottom: var(--space-4);
+  filter: drop-shadow(0 0 15px rgba(99, 102, 241, 0.2));
+}
+
+.splashLogoText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: var(--space-4);
+}
+
+.splashWordmark {
+  display: flex;
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.splashTitle {
+  font-size: var(--text-2xl);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  background: linear-gradient(135deg, #ffffff 0%, var(--color-text-secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: var(--space-2);
+  animation: splashFadeInUp 0.8s var(--ease-out) both;
+}
+
+.splashSubtitle {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  animation: splashFadeInUp 0.8s 0.15s var(--ease-out) both;
+  margin-bottom: var(--space-8);
+}
+
+.splashLoader {
+  width: 140px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  position: relative;
+}
+
+.splashProgress {
+  height: 100%;
+  background: var(--color-brand-mid);
+  width: 0%;
+  animation: splashLoad 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  box-shadow: 0 0 8px var(--color-brand-mid);
+}
+
+@keyframes splashLoad {
+  to { width: 100%; }
+}
+
+@keyframes splashPulse {
+  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 15px rgba(99, 102, 241, 0.2)); }
+  50%      { transform: scale(1.06); filter: drop-shadow(0 0 30px rgba(99, 102, 241, 0.4)); }
+}
+
+@keyframes splashFadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

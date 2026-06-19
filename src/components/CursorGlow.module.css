@@ -1,0 +1,23 @@
+.glow {
+  position: fixed;
+  left: var(--cursor-x, 50vw);
+  top: var(--cursor-y, 50vh);
+  width: 480px;
+  height: 480px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--color-brand) 7%, transparent) 0%,
+    transparent 65%
+  );
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 0;
+  transition: left 0.12s ease-out, top 0.12s ease-out;
+  mix-blend-mode: screen;
+}
+
+:global([data-theme="light"]) .glow {
+  mix-blend-mode: multiply;
+  opacity: 0.5;
+}

@@ -1,0 +1,99 @@
+.ambient {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* ── Aurora blobs ─────────────────────────────────── */
+.aurora {
+  position: absolute;
+  top: -20%;
+  left: -15%;
+  width: 70vw;
+  height: 70vh;
+  background: radial-gradient(
+    ellipse at center,
+    color-mix(in srgb, var(--color-brand) 18%, transparent) 0%,
+    transparent 70%
+  );
+  filter: blur(60px);
+  animation: aurora-drift 22s ease-in-out infinite alternate;
+}
+
+.auroraSecondary {
+  position: absolute;
+  bottom: -25%;
+  right: -10%;
+  width: 60vw;
+  height: 60vh;
+  background: radial-gradient(
+    ellipse at center,
+    color-mix(in srgb, var(--color-accent) 12%, transparent) 0%,
+    transparent 65%
+  );
+  filter: blur(70px);
+  animation: aurora-drift-reverse 28s ease-in-out infinite alternate;
+}
+
+/* ── Perspective mesh ─────────────────────────────── */
+.meshGrid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--color-brand) 6%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--color-brand) 6%, transparent) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 20%, transparent 75%);
+  opacity: 0.35;
+  animation: mesh-pulse 10s ease-in-out infinite;
+}
+
+/* ── Film grain ───────────────────────────────────── */
+.noise {
+  position: absolute;
+  inset: 0;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 128px 128px;
+}
+
+/* ── Floating particles ───────────────────────────── */
+.particleField {
+  position: absolute;
+  inset: 0;
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--color-brand-mid);
+  opacity: 0;
+  box-shadow: 0 0 6px var(--color-brand-mid);
+  animation: particle-float linear infinite;
+}
+
+/* ── Subtle CRT scanlines ─────────────────────────── */
+.scanlines {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
+  opacity: 0.4;
+  mix-blend-mode: overlay;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora,
+  .auroraSecondary,
+  .meshGrid,
+  .particle {
+    animation: none !important;
+  }
+}

@@ -1,44 +1,221 @@
 .tile {
+  position: relative;
   display: flex;
   flex-direction: column;
-  background: var(--color-surface);
+  background: color-mix(in srgb, var(--accent-color, var(--color-brand)) 2%, var(--color-surface));
   border-radius: var(--radius-lg);
-  border: 1px solid var(--color-border-light);
+  border: 1px solid color-mix(in srgb, var(--accent-color, var(--color-brand)) 12%, var(--color-border));
   overflow: hidden;
   text-decoration: none;
   color: var(--color-text-primary);
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow-md);
+  height: 100%; /* Force all cards to have identical height in a row */
+  
+  /* 3D Tilt Setup */
+  transform-style: preserve-3d;
+  transform: perspective(1000px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+  
   transition:
-    transform var(--transition-base),
+    transform 350ms var(--ease-out),
     box-shadow var(--transition-base),
-    border-color var(--transition-base);
-  animation: fadeInUp 0.45s var(--delay, 0s) var(--ease-out) both;
+    border-color var(--transition-base),
+    background var(--transition-base);
+  transition-delay: var(--delay, 0s), 0s, 0s, 0s;
+}
+
+.tile::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: var(--radius-lg);
+  padding: 2px;
+  background: linear-gradient(
+    135deg, 
+    var(--accent-color, var(--color-brand)), 
+    #a855f7, 
+    var(--color-brand-mid), 
+    var(--accent-color, var(--color-brand))
+  );
+  background-size: 300% 300%;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.15;
+  transition: opacity var(--transition-base), inset var(--transition-base);
+  z-index: 5;
 }
 
 .tile:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-lg);
-  border-color: var(--color-border);
+  transform: perspective(1000px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)) translateY(-6px);
+  box-shadow: var(--shadow-xl), 0 12px 35px var(--color-card-glow, rgba(99, 102, 241, 0.08));
+  border-color: color-mix(in srgb, var(--accent-color, var(--color-brand)) 30%, transparent);
+  background: color-mix(in srgb, var(--accent-color, var(--color-brand)) 5%, var(--color-surface-hover));
+  
+  /* Fast tracking on hover, disable entrance delays */
+  transition:
+    transform 80ms linear,
+    box-shadow var(--transition-base),
+    border-color var(--transition-base),
+    background var(--transition-base);
+  transition-delay: 0s;
 }
 
-.accentBar {
-  height: 5px;
+.tile:hover::after {
+  opacity: 1;
+  inset: -2px;
+  animation: slide-gradient 3s linear infinite;
+}
+
+/* ── Image & Header tag ───────────────────────────── */
+.imageWrapper {
+  position: relative;
   width: 100%;
-  flex-shrink: 0;
+  height: 180px;
+  overflow: hidden;
+  background: #000;
+  border-bottom: 1px solid var(--color-border);
+  transform-style: preserve-3d;
 }
 
+.imageWrapper::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 60%,
+    color-mix(in srgb, var(--accent-color, var(--color-brand)) 15%, transparent) 100%
+  );
+  opacity: 0;
+  transition: opacity var(--transition-base);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.tile:hover .imageWrapper::after {
+  opacity: 1;
+}
+
+.imageWrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+  z-index: 3;
+  pointer-events: none;
+  transition: left 0.6s var(--ease-out);
+}
+
+.tile:hover .imageWrapper::before {
+  left: 150%;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.92;
+  transition: transform var(--transition-slow), opacity var(--transition-base);
+}
+
+.image[data-project-id="ysiras-recruitment-assessment"],
+.image[data-project-id="pronex-scriber-agent"],
+.image[data-project-id="mta-health-plan-chatbot"],
+.image[data-project-id="nl-to-sql-smart-reports"] {
+  object-position: top;
+}
+
+.tile:hover .image {
+  transform: scale(1.06);
+  opacity: 1.0;
+}
+
+.imageOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(3, 7, 18, 0) 50%, rgba(3, 7, 18, 0.6) 100%);
+  pointer-events: none;
+}
+
+.clientTag {
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-4);
+  font-size: 10px;
+  font-weight: 700;
+  color: #ffffff;
+  background: rgba(3, 7, 18, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transform: translateZ(28px);
+  transition: transform var(--transition-spring), background var(--transition-base);
+}
+
+.tile:hover .clientTag {
+  transform: translateZ(38px) scale(1.05);
+  background: var(--accent-color, var(--color-brand));
+}
+
+.roiBadge {
+  position: absolute;
+  bottom: var(--space-4);
+  right: var(--space-4);
+  background: linear-gradient(135deg, var(--accent-color, var(--color-brand)) 0%, #a855f7 100%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 6px 12px;
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  transform: translateZ(30px);
+  transition: transform var(--transition-spring);
+  z-index: 5;
+}
+
+.tile:hover .roiBadge {
+  transform: translateZ(40px) scale(1.05);
+  box-shadow: 0 6px 18px var(--color-card-glow, rgba(99, 102, 241, 0.25));
+}
+
+.roiValue {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: var(--text-base);
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1;
+  margin-bottom: 2px;
+}
+
+.roiLabel {
+  font-size: 8px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.85);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1;
+}
+
+/* ── Body ─────────────────────────────────────────── */
 .body {
   flex: 1;
   display: flex;
   flex-direction: column;
   padding: var(--space-6);
   gap: var(--space-4);
-}
-
-.header {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
+  position: relative;
+  z-index: 2;
+  transform-style: preserve-3d;
 }
 
 .title {
@@ -46,26 +223,110 @@
   font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.3;
-  color: var(--color-brand);
+  color: var(--color-text-primary);
+  transform: translateZ(15px);
+  transition: color var(--transition-fast), transform var(--transition-spring);
+}
+
+.tile:hover .title {
+  color: var(--accent-color, var(--color-brand));
+  transform: translateZ(25px);
+}
+
+.salesTagline {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--accent-color, var(--color-brand-mid));
+  line-height: 1.45;
+  margin-bottom: var(--space-1);
+  transform: translateZ(12px);
+  transition: transform var(--transition-spring);
+}
+
+.tile:hover .salesTagline {
+  transform: translateZ(20px);
 }
 
 .description {
   font-size: var(--text-sm);
   color: var(--color-text-secondary);
-  line-height: 1.75;
+  line-height: 1.65;
   flex: 1;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  transform: translateZ(10px);
+  transition: transform var(--transition-spring), color var(--transition-base);
 }
 
+.tile:hover .description {
+  transform: translateZ(16px);
+  color: var(--color-text-primary);
+}
+
+/* ── Tech Stack tags ───────────────────────────────── */
+.techStack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: auto;
+  padding-top: var(--space-2);
+  transform: translateZ(12px);
+  transition: transform var(--transition-spring);
+}
+
+.tile:hover .techStack {
+  transform: translateZ(20px);
+}
+
+.techBadge {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  padding: 3px 8px;
+  border-radius: 4px;
+  transition: transform var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.tile:hover .techBadge {
+  border-color: color-mix(in srgb, var(--accent-color, var(--color-brand)) 30%, var(--color-border));
+  color: var(--color-text-primary);
+}
+
+.tile:hover .techBadge:nth-child(odd) {
+  transform: translateY(-2px);
+}
+
+.tile:hover .techBadge:nth-child(even) {
+  transform: translateY(-1px);
+}
+
+.techBadgeMore {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--accent-color, var(--color-brand-mid));
+  background: rgba(99, 102, 241, 0.06);
+  border: 1px solid rgba(99, 102, 241, 0.1);
+  padding: 3px 6px;
+  border-radius: 4px;
+}
+
+/* ── Footer & CTA ─────────────────────────────────── */
 .footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding-top: var(--space-4);
-  border-top: 1px solid var(--color-border-light);
+  border-top: 1px solid var(--color-border);
+  transform: translateZ(15px);
+  transition: transform var(--transition-spring), border-color var(--transition-base);
+}
+
+.tile:hover .footer {
+  transform: translateZ(24px);
 }
 
 .cta {
@@ -74,20 +335,81 @@
   gap: 6px;
   font-size: var(--text-sm);
   font-weight: 700;
-  color: var(--color-accent);
+  color: var(--color-text-primary);
   transition: gap var(--transition-fast), color var(--transition-fast);
-  letter-spacing: 0.01em;
 }
 
 .tile:hover .cta {
   gap: 10px;
-  color: var(--color-accent-hover);
+  color: var(--accent-color, var(--color-brand-mid));
 }
 
 .arrowIcon {
   transition: transform var(--transition-fast);
+  color: var(--color-text-muted);
 }
 
 .tile:hover .arrowIcon {
-  transform: translateX(2px);
+  transform: translateX(3px);
+  color: var(--accent-color, var(--color-brand-mid));
+}
+
+/* ── Spotlight Hover Glow ─────────────────────────── */
+.spotlight {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  background: radial-gradient(
+    280px circle at var(--mouse-x, 0px) var(--mouse-y, 0px),
+    var(--color-spotlight, rgba(255, 255, 255, 0.05)),
+    transparent 80%
+  );
+}
+
+.tile:hover .spotlight {
+  opacity: 1;
+}
+
+/* ── Iframe Previews ────────────────────────────── */
+.iframeContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  background: var(--color-bg);
+}
+
+.iframePreview {
+  width: 400%;
+  height: 400%;
+  border: none;
+  transform: scale(0.25);
+  transform-origin: 0 0;
+  pointer-events: none;
+  opacity: 0.82;
+  transition: transform var(--transition-slow), opacity var(--transition-base);
+}
+
+.tile:hover .iframePreview {
+  transform: scale(0.265);
+  opacity: 0.95;
+}
+
+/* ── Border Gradient Keyframes ───────────────────── */
+@keyframes slide-gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
