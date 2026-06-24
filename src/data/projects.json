@@ -2,69 +2,45 @@
   {
     "id": "pronex-scriber-agent",
     "title": "Pronex Scriber Agent",
-    "description": "An AI-powered real-time medical transcription and clinical documentation platform. Pronex Scriber Agent listens to doctor-patient conversations, transcribes them live via a browser extension, and automatically generates six formats of clinical summaries — from quick references to full SOAP notes — using a multi-stage LLM pipeline. Built-in PHI masking ensures patient data never leaves the pipeline unprotected, and an asynchronous session architecture allows clinicians to retrieve structured reports the moment they are ready.",
+    "description": "Empowers healthcare providers to deliver undivided patient care by automating in-session clinical documentation and charting workflows.",
     "client": "Pronex / Youngsoft India",
     "demo_url": "https://transcribes-pronex.youngsoft.com/",
     "color": "#10b981",
     "gradient": "linear-gradient(135deg, #06b6d4 0%, #10b981 100%)",
     "image": "/images/pronex-scriber-agent.png",
     "use_iframe": false,
-    "tech_stack": [
-      "React",
-      "TypeScript",
-      "WebSocket",
-      "Chrome API",
-      "LangGraph",
-      "Deepgram STT",
-      "Google Gemini",
-      "Groq API",
-      "AWS EC2"
-    ],
-    "capabilities": [
-      "Speech & NLP Systems",
-      "AI Assistants"
+    "tech_stack": [],
+    "types": [
+      "transcription"
     ],
     "highlights": [
       "Transcribes doctor-patient conversations live in the browser with no external app install required.",
       "Generates six clinically relevant summary formats — including SOAP Notes — from a single recorded session.",
-      "Built-in PHI masking keeps patient data protected before any content reaches an external LLM.",
-      "Flexible dual-LLM architecture (Google Gemini + Groq fallback) ensures high availability.",
-      "Fully asynchronous pipeline delivers summaries section-by-section as soon as each is ready.",
-      "Cross-platform delivery: Chrome extension, web app, and REST API work together seamlessly.",
-      "Already live in production at transcribes-pronex.youngsoft.com on AWS EC2."
+      "Built-in security masking keeps patient data protected during transcription.",
+      "Delivers summaries section-by-section as soon as each is ready to keep workflow moving.",
+      "Cross-platform delivery: access summaries anywhere on web or browser tools.",
+      "Fully operational and live in production for immediate clinician use."
     ],
     "features": [
       {
         "name": "Real-Time Speech-to-Text Transcription",
-        "description": "Streams live audio from a Chrome extension to the backend over WebSocket and converts it to text in real time using the Deepgram API, delivering interim and final transcript segments as the conversation unfolds."
+        "description": "Converts live spoken conversations between doctors and patients into text in real time, displaying the transcript as the consultation unfolds."
       },
       {
         "name": "Multi-Format Clinical Summarization",
-        "description": "Processes the completed transcript through a LangGraph pipeline to produce six distinct summary formats: Quick Reference, Brief Summary, Goldilocks Summary, Detailed Summary, Super Detailed Summary, and structured SOAP Notes — giving clinicians the right level of detail for every workflow."
+        "description": "Automatically structures the completed transcript into six distinct clinical summary formats, giving clinicians the right level of detail for every workflow."
       },
       {
         "name": "PHI Masking & Data Privacy",
-        "description": "Automatically detects and redacts Protected Health Information (PHI) from raw transcripts before they are sent to any external LLM, keeping patient data compliant with healthcare privacy requirements."
+        "description": "Automatically detects and redacts sensitive patient identifiers from raw transcripts, keeping patient data secure and fully compliant with privacy requirements."
       },
       {
-        "name": "LangGraph-Based Generation Pipeline",
-        "description": "Orchestrates summary creation through a three-node workflow: a Masker node that redacts PHI, a Summary Generator node that calls the LLM with a structured prompt, and a Post-Processor node that parses the JSON response into individual summary sections."
-      },
-      {
-        "name": "Asynchronous Session Architecture",
-        "description": "Each transcription session is assigned a UUID. Summary generation runs as a background task, and clients poll dedicated REST endpoints per summary type to retrieve results as each section completes — keeping the UI responsive throughout."
-      },
-      {
-        "name": "Chrome Extension Audio Capture",
-        "description": "A lightweight React and Vite Chrome extension captures microphone audio directly in the browser and streams it to the backend, requiring no additional hardware or standalone recording software."
-      },
-      {
-        "name": "Dual LLM Provider Support",
-        "description": "Supports switching between Google Gemini (primary) and Groq (fallback) via a single environment variable, ensuring continuity of service if one provider is unavailable."
+        "name": "Easy Audio Capture",
+        "description": "Captures microphone audio directly within your standard browser session, requiring no special hardware or standalone recording software."
       },
       {
         "name": "Session Dashboard & History",
-        "description": "A web frontend provides a login-protected dashboard where users can review past transcription sessions, replay generated summaries, and track clinical documentation history."
+        "description": "A secure dashboard where users can review past transcription sessions, view generated summaries, and track clinical documentation history."
       }
     ],
     "sales_tagline": "Automate Clinical Documentation and Simplify Clinician Workflows.",
@@ -82,26 +58,16 @@
   {
     "id": "mta-health-plan-chatbot",
     "title": "MyTruAdvantage Health Plan Chatbot",
-    "description": "A friendly, AI-powered chatbot designed to help health plan members and insurance agents quickly find answers to their questions. Users can chat in English or Spanish to get instant information about plan benefits, check what services are covered, and find contact details for local doctors and pharmacies near them.",
+    "description": "Provides health plan members and insurance agents with immediate, natural language access to complex coverage benefits and provider directories.",
     "client": "SIHO Insurance Services & MyTruAdvantage",
     "demo_url": "https://dev.mytruadvantage.com",
     "color": "#00adb5",
     "gradient": "linear-gradient(135deg, #00adb5 0%, #005f63 100%)",
     "image": "/images/mta-health-plan-chatbot.png",
-    "tech_stack": [
-      "React",
-      "Vite",
-      "Node.js",
-      "Express",
-      "OpenAI API",
-      "Bilingual NLP",
-      "SIHO API",
-      "Docker",
-      "AWS ECS"
-    ],
-    "capabilities": [
-      "RAG Chatbots",
-      "Healthcare Portals"
+    "tech_stack": [],
+    "types": [
+      "knowledge search",
+      "patient&clinic portals"
     ],
     "highlights": [
       "Provides instant support 24/7 for health plan and coverage questions.",
@@ -142,25 +108,15 @@
   {
     "id": "ysiras-recruitment-assessment",
     "title": "YSIRas — Recruitment Assessment System",
-    "description": "A modern, AI-powered hiring and video interview platform designed to simplify talent acquisition. YSIRas automates the most time-consuming parts of recruiting, from evaluating applicant resumes against job requirements to generating custom screening questions for video interviews and automatically grading candidate answers using AI. It provides hiring managers and recruitment teams with a collaborative dashboard to coordinate vacancies, monitor screening progress, and export comprehensive assessment reports, helping organizations hire top talent much faster.",
+    "description": "Accelerates enterprise hiring cycles by standardizing candidate evaluations and automating routine applicant screening tasks.",
     "client": "Youngsoft India & Enterprise Recruiting Partners",
     "demo_url": "https://recruitment.youngsoft.in",
     "color": "#235ba8",
     "gradient": "linear-gradient(135deg, #235ba8 0%, #0f356b 100%)",
     "image": "/images/ysiras-walkthrough.webp",
-    "tech_stack": [
-      "React",
-      "TypeScript",
-      "TailwindCSS",
-      "WebRTC",
-      "Daily.co",
-      "LangChain",
-      "OpenAI Whisper",
-      "FastAPI",
-      "PostgreSQL"
-    ],
-    "capabilities": [
-      "AI Assistants"
+    "tech_stack": [],
+    "types": [
+      "reports"
     ],
     "highlights": [
       "Streamlines candidate evaluation by automatically reviewing resumes against job descriptions.",
@@ -214,26 +170,16 @@
   {
     "id": "ptmantra-rtm-platform",
     "title": "ptMantra Remote Therapeutic Monitoring (RTM) Platform",
-    "description": "ptMantra is a digital healthcare platform designed to support Remote Therapeutic Monitoring (RTM) for physical therapy, occupational therapy, orthopedics, and primary care. It helps providers stay connected with patients outside the clinic by tracking adherence, delivering therapeutic exercises, collecting patient feedback, and improving care outcomes while enabling reimbursement opportunities through RTM billing codes.",
+    "description": "Enables physical therapy clinics to monitor patient recovery outside office visits while establishing recurring remote care revenue streams.",
     "client": "ptMantra",
     "demo_url": "https://ptmantra.com",
     "color": "#9b51e0",
     "gradient": "linear-gradient(135deg, #9b51e0 0%, #4c2870 100%)",
     "image": "/images/ptmantra-rtm-platform.png",
-    "use_iframe": true,
-    "tech_stack": [
-      "React",
-      "TypeScript",
-      "Node.js",
-      "Express",
-      "PostgreSQL",
-      "Chart.js",
-      "Twilio SMS",
-      "AWS ECS",
-      "HIPAA Compliant"
-    ],
-    "capabilities": [
-      "Healthcare Portals"
+    "use_iframe": false,
+    "tech_stack": [],
+    "types": [
+      "patient&clinic portals"
     ],
     "highlights": [
       "Improves patient adherence through digital engagement and reminders.",
@@ -279,25 +225,16 @@
   {
     "id": "ortele-telemedicine-platform",
     "title": "Ortele Telemedicine Platform",
-    "description": "Ortele is a telemedicine platform that connects patients with licensed medical specialists through secure video consultations. It enables remote access to healthcare services, helping patients receive medical care from anywhere while supporting providers in delivering specialty care, improving continuity, and reducing hospitalizations and healthcare costs.",
+    "description": "Connects clinical facilities and remote patients with licensed specialists via secure, low-latency virtual consultations.",
     "client": "Ortele Health Corporation",
     "demo_url": "https://ortele.com",
     "color": "#06b6d4",
     "gradient": "linear-gradient(135deg, #0891b2 0%, #06b6d4 100%)",
     "image": "/images/ortele-telemedicine-platform.png",
-    "use_iframe": true,
-    "tech_stack": [
-      "React",
-      "TypeScript",
-      "WebRTC",
-      "Node.js",
-      "WebSockets",
-      "Medicaid Integration",
-      "AWS ECS",
-      "HIPAA Compliant"
-    ],
-    "capabilities": [
-      "Healthcare Portals"
+    "use_iframe": false,
+    "tech_stack": [],
+    "types": [
+      "patient&clinic portals"
     ],
     "highlights": [
       "Enables remote access to specialty medical care via secure video platform.",
@@ -343,28 +280,16 @@
   {
     "id": "planetrehab-therapy-platform",
     "title": "Planetrehab Practice Management Platform",
-    "description": "Planetrehab is an all-in-one healthcare technology platform designed for physical and occupational therapy clinics. It combines electronic health records (EHR), Remote Therapeutic Monitoring (RTM), billing automation, AI-powered documentation, patient engagement tools, and revenue cycle management services to help clinics improve efficiency, patient care, and revenue generation.",
+    "description": "Streamlines physical therapy practice operations by integrating clinical scheduling, electronic health records, and billing workflows into a single interface.",
     "client": "Planetrehab Inc.",
     "demo_url": "https://planetrehab.com",
     "color": "#d946ef",
     "gradient": "linear-gradient(135deg, #a855f7 0%, #d946ef 100%)",
     "image": "/images/planetrehab-physical-therapy.png",
-    "use_iframe": true,
-    "tech_stack": [
-      "React",
-      "TypeScript",
-      "FastAPI",
-      "Python",
-      "AI NLP",
-      "PostgreSQL",
-      "Twilio API",
-      "Chart.js",
-      "Docker",
-      "HIPAA Compliant"
-    ],
-    "capabilities": [
-      "AI Assistants",
-      "Healthcare Portals"
+    "use_iframe": false,
+    "tech_stack": [],
+    "types": [
+      "patient&clinic portals"
     ],
     "highlights": [
       "All-in-one EHR and clinic management platform for therapy practices.",
@@ -410,38 +335,26 @@
   {
     "id": "drx-prescription-platform",
     "title": "DRX Digital Prescription Management & Virtual Assistance Platform",
-    "description": "A comprehensive AI-enabled e-prescribing and medication management platform that empowers healthcare providers to securely create, manage, transmit, monitor, and optimize prescriptions throughout the medication lifecycle. The platform combines digital prescription management, EPCS, PDMP, ePA, real-time clinical decision support, pharmacy connectivity, and AI-powered virtual assistance to improve prescribing efficiency, regulatory compliance, medication adherence, and patient safety. Integrated with the Surescripts network and healthcare systems, DRX streamlines medication workflows while providing intelligent support for prescribers and healthcare staff.",
+    "description": "Modernizes medication management by connecting clinicians with nationwide pharmacy networks and real-time electronic prescribing tools.",
     "client": "Healthcare Providers & e-Prescribing Organizations",
     "demo_url": "https://h2hsolutions.com/drx-virtual-assitance/",
     "color": "#e11d48",
     "gradient": "linear-gradient(135deg, #be123c 0%, #e11d48 100%)",
     "image": "/images/drx-prescription-platform.png",
-    "use_iframe": true,
-    "tech_stack": [
-      "React",
-      "TypeScript",
-      "Node.js",
-      "Surescripts API",
-      "OpenAI API",
-      "EPCS/PDMP",
-      "FHIR/HL7",
-      "PostgreSQL",
-      "AWS ECS",
-      "HIPAA Compliant"
-    ],
-    "capabilities": [
-      "Prediction Models",
-      "AI Assistants"
+    "use_iframe": false,
+    "tech_stack": [],
+    "types": [
+      "predictive analytics"
     ],
     "highlights": [
       "End-to-end digital prescription lifecycle management.",
-      "Supports EPCS, PDMP, ePA, RTF, and RTPB workflows.",
-      "Integrated with Surescripts for nationwide pharmacy connectivity.",
+      "Supports secure controlled substance prescribing, state monitoring programs, and electronic prior authorizations.",
+      "Integrated with major nationwide pharmacy networks for seamless electronic transmission.",
       "Provides real-time medication history, eligibility, and formulary intelligence.",
       "Includes AI-powered virtual assistance for prescriber support.",
       "Delivers predictive medication adherence analytics.",
       "Enhances prescribing safety through advanced clinical decision support.",
-      "Integrates with existing EMR and healthcare management systems."
+      "Integrates with existing healthcare records software."
     ],
     "features": [
       {
@@ -449,16 +362,16 @@
         "description": "Enables providers to create, manage, track, renew, cancel, and transmit electronic prescriptions through a centralized prescribing platform."
       },
       {
-        "name": "Electronic Prescribing of Controlled Substances (EPCS)",
-        "description": "Supports secure electronic prescribing of controlled medications with certified workflows, authentication, and compliance requirements."
+        "name": "Controlled Substances Prescribing",
+        "description": "Supports secure electronic prescribing of controlled medications with compliant verification workflows."
       },
       {
-        "name": "Prescription Drug Monitoring Program (PDMP)",
-        "description": "Provides access to prescription monitoring data to support informed prescribing decisions, identify potential misuse, and meet regulatory requirements."
+        "name": "Prescription Monitoring Integration",
+        "description": "Provides instant access to drug history to support informed prescribing decisions, identify potential misuse, and meet regulatory requirements."
       },
       {
-        "name": "Electronic Prior Authorization (ePA)",
-        "description": "Automates prior authorization workflows by enabling providers to submit, review, track, and receive authorization responses directly within the prescribing workflow."
+        "name": "Automated Prior Authorization",
+        "description": "Automates prior authorization workflows by enabling providers to submit, review, and receive approval responses directly within the prescribing screen."
       },
       {
         "name": "Clinical Decision Support",
@@ -481,8 +394,8 @@
         "description": "Utilizes predictive analytics to identify patients at risk of medication non-adherence, enabling proactive interventions and improved health outcomes."
       },
       {
-        "name": "EMR/EHR Integration Framework",
-        "description": "Supports one-way, two-way, and batch integration models with EMR and practice management systems for seamless data exchange and workflow continuity."
+        "name": "Practice Software Integration",
+        "description": "Supports standard integration models with existing practice management and patient record systems for seamless data exchange and workflow continuity."
       }
     ],
     "sales_tagline": "Ensure High Prescribing Accuracy and Surescripts-Certified Electronic Workflows.",
@@ -500,69 +413,49 @@
   {
     "id": "nl-to-sql-smart-reports",
     "title": "NL-to-SQL Smart Reports",
-    "description": "An AI-powered reporting and analytics platform that enables organizations to interact with relational databases using natural language. Smart Reports allows administrators to upload SQL schemas, enrich database metadata with AI-generated descriptions, manage schema definitions, and generate SQL queries from business questions. The platform executes queries against connected databases and returns structured results with optional visualization recommendations, making data exploration accessible to both technical and non-technical users.",
+    "description": "Allows non-technical teams to query database sources and generate business intelligence reports using plain English search.",
     "client": "Internal Business Intelligence & Reporting Teams",
     "demo_url": "https://smartreports-pronex.youngsoft.com/login",
     "color": "#059669",
     "gradient": "linear-gradient(135deg, #047857 0%, #059669 100%)",
     "image": "/images/nl-to-sql-platform.png",
     "use_iframe": false,
-    "tech_stack": [
-      "React",
-      "TypeScript",
-      "Python",
-      "FastAPI",
-      "LangChain",
-      "OpenAI API",
-      "MySQL",
-      "pgvector",
-      "Docker",
-      "AWS EC2"
-    ],
-    "capabilities": [
-      "NL to SQL Projects"
+    "tech_stack": [],
+    "types": [
+      "reports"
     ],
     "highlights": [
-      "Converts natural language questions into executable SQL queries.",
-      "Automatically enriches database schemas with AI-generated business descriptions.",
-      "Supports administrator-managed schema metadata updates.",
-      "Provides structured query results with explanations and column metadata.",
-      "Includes visualization recommendations for analytical reporting workflows.",
-      "Supports file-based schema retrieval with optional pgvector integration."
+      "Converts natural language questions into accurate data reports instantly.",
+      "Automatically translates database fields into clear, business-friendly terminology using AI.",
+      "Allows administrators to easily customize data descriptions and naming.",
+      "Provides structured results alongside simple text explanations of the data.",
+      "Includes visualization recommendations for analytical reporting workflows."
     ],
     "features": [
       {
-        "name": "AI-Powered Schema Enrichment",
-        "description": "Processes uploaded SQL schema files and automatically generates business-friendly descriptions for tables and columns, creating a searchable knowledge base for reporting."
+        "name": "Automated Business Glossary Mapping",
+        "description": "Scans data structures and automatically generates business-friendly descriptions for files and data fields, creating an easy-to-use search glossary."
       },
       {
-        "name": "Schema Management Console",
-        "description": "Allows administrators to review and update table and column descriptions, ensuring generated metadata aligns with business terminology and reporting requirements."
+        "name": "Glossary Customization Console",
+        "description": "Allows administrators to review and update business definitions, ensuring system outputs align with specific company terminology and reporting guidelines."
       },
       {
-        "name": "Natural Language Querying",
-        "description": "Enables users to ask business questions in plain language and automatically converts those requests into SQL queries using schema-aware AI processing."
+        "name": "Plain English Search",
+        "description": "Enables team members to ask questions about company data in plain language and get answers without needing technical training or database skills."
       },
       {
-        "name": "Automated SQL Execution",
-        "description": "Runs generated SQL queries against connected MySQL databases and returns structured results, explanations, metadata, and execution feedback."
+        "name": "Smart Chart Recommendations",
+        "description": "Recommends visual presentations (such as bar charts, line graphs, or pie charts) based on the data requested to help users see trends instantly."
       },
       {
-        "name": "Visualization-Aware Responses",
-        "description": "Supports chart recommendations including bar, pie, line, automatic selection, or tabular output to help users better understand query results."
-      },
-      {
-        "name": "Intelligent Schema Retrieval",
-        "description": "Uses schema retrieval mechanisms to identify the most relevant tables and columns during query generation, improving SQL accuracy and contextual understanding."
-      },
-      {
-        "name": "Project-Based Data Management",
-        "description": "Organizes uploaded schemas, enriched metadata, and reporting artifacts within dedicated projects, simplifying management across multiple databases and reporting environments."
+        "name": "Multi-Database Reporting Spaces",
+        "description": "Organizes business data sources and reports into dedicated spaces, simplifying data management across different departments or lines of business."
       }
     ],
     "sales_tagline": "Query Databases in Plain English and Reduce Analyst Request Backlogs.",
     "why_buy": [
-"Allows non-technical staff to extract data insights without writing a single line of code.",
+      "Allows non-technical staff to extract data insights without writing a single line of code.",
       "Enriches databases automatically with business glossary mapping using AI schemas.",
       "Safeguards database structure through read-only schemas and secure metadata query generation.",
       "Recommends charts and visualization layouts based on the query context."
@@ -575,7 +468,7 @@
   {
     "id": "intelligent-reporting-system",
     "title": "Intelligent Reporting System",
-    "description": "An AI-powered reporting assistant that lets healthcare providers query their clinical and operational data using plain English. Doctors, administrators, and practice managers can simply type a question and instantly get answers with structured data tables — no SQL knowledge required. Built for multi-practice environments with a full admin dashboard for monitoring usage and performance.",
+    "description": "Translates complex clinical databases into readable tables and reports for healthcare administrators through conversational search.",
     "client": "Planet Rehab",
     "demo_url": "",
     "color": "#6c63ff",
@@ -586,46 +479,34 @@
       "/images/smart-reports-login.png",
       "/images/smart-reports-telemetry.png"
     ],
-    "tech_stack": [
-      "Python",
-      "FastAPI",
-      "LangGraph",
-      "Google Gemini",
-      "Groq (LLaMA 3)",
-      "PostgreSQL",
-      "pgvector",
-      "MongoDB",
-      "Docker",
-      "sentence-transformers"
-    ],
-    "capabilities": [
-      "Text-to-SQL",
-      "RAG",
-      "Multi-tenant AI",
-      "Agentic Pipelines"
+    "tech_stack": [],
+    "types": [
+      "reports",
+      "knowledge search",
+      "patient&clinic portals"
     ],
     "highlights": [
-      "Converts plain English questions into accurate SQL queries in seconds.",
+      "Converts plain English questions into accurate data tables in seconds.",
       "Supports multiple healthcare practices from a single deployment.",
-      "Automatically learns and understands each practice's database schema using LLM enrichment.",
-      "Tracks token usage, response times, and cost per provider with a built-in telemetry dashboard."
+      "Automatically maps and understands each practice's data terminology using AI.",
+      "Tracks usage, response times, and system metrics per practice through a central dashboard."
     ],
     "features": [
       {
-        "name": "Natural Language to SQL",
-        "description": "Users type questions in plain English and the system generates, validates, and executes the correct SQL query against the practice's database — returning results as a clean, readable table. Includes automatic retry and query regeneration if the first attempt fails."
+        "name": "Plain English Data Search",
+        "description": "Allows users to search data in plain language and returns results as clear, readable tables. Includes automatic correction to refine searches instantly if needed."
       },
       {
-        "name": "RAG-Powered Schema Understanding",
-        "description": "At setup, the system reads the database schema and uses an LLM to generate rich descriptions for every table and column. These are stored as vector embeddings so the AI can retrieve only the most relevant schema context for each query, keeping responses accurate even across large databases."
+        "name": "AI Data Terminology Mapping",
+        "description": "Maps complex database structures to clear business descriptions. When a user asks a question, the AI retrieves only the relevant terminology to keep responses accurate."
       },
       {
-        "name": "Multi-Practice Multi-Tenant Support",
-        "description": "Each healthcare practice gets its own isolated database connection, vector store, and chat history. A single deployment serves all practices simultaneously, with role-based access (superadmin vs. practice admin) controlling who can see what."
+        "name": "Secure Multi-Practice Isolation",
+        "description": "Each healthcare practice gets its own isolated data connection and search history, ensuring complete patient data security and privacy under role-based controls."
       },
       {
-        "name": "Admin & Performance Dashboard",
-        "description": "Superadmins can trigger full schema rebuilds or incremental syncs, inspect and edit table metadata, and monitor per-provider query counts, average response times, token consumption, and estimated cost — all through the admin API."
+        "name": "Management Dashboard",
+        "description": "Practice administrators can update data terms, monitor search frequency, and track system speed and resource usage through a clean administrative panel."
       }
     ],
     "sales_tagline": "Query Operational Data in Plain English and Reduce Custom Report Backlogs.",

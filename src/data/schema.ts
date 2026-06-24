@@ -15,7 +15,7 @@ export interface Project {
   gradient: string;
   image: string;
   tech_stack: string[];
-  capabilities: string[];
+  types: string[];
   use_iframe?: boolean;
   
   // Sales metadata fields

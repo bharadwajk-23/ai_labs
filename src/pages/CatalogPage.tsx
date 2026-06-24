@@ -3,15 +3,15 @@ import ContentLayout from '../layouts/ContentLayout';
 import { ProjectTile } from '../components/ProjectTile';
 import { useProjects } from '../hooks/useProjects';
 import { useScrollReveal } from '../hooks/useScrollReveal';
+import { formatTypeLabel } from '../utils/format';
 import styles from './CatalogPage.module.css';
 
-const categories = [
-  'RAG Chatbots',
-  'NL to SQL Projects',
-  'Prediction Models',
-  'Speech & NLP Systems',
-  'AI Assistants',
-  'Healthcare Portals'
+const typesList = [
+  'knowledge search',
+  'reports',
+  'predictive analytics',
+  'transcription',
+  'patient&clinic portals'
 ];
 
 type VerticalType = 'All' | 'Healthcare' | 'Insurance' | 'Recruitment';
@@ -20,7 +20,9 @@ export default function CatalogPage() {
   const projects = useProjects();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedVertical, setSelectedVertical] = useState<VerticalType>('All');
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
+
+
 
   const [heroRef, heroRevealed] = useScrollReveal<HTMLDivElement>(0.02, true);
   const [controlsRef, controlsRevealed] = useScrollReveal<HTMLDivElement>(0.05, true);
@@ -62,7 +64,7 @@ export default function CatalogPage() {
       const verticals = getVerticals(project.id);
       const matchesVertical = selectedVertical === 'All' || verticals.includes(selectedVertical);
       
-      const matchesCategory = !selectedCategory || project.capabilities?.includes(selectedCategory);
+      const matchesType = selectedTypes.length === 0 || project.types?.some(t => selectedTypes.includes(t));
       
       const searchLower = searchTerm.toLowerCase();
       const matchesSearch = 
@@ -72,14 +74,14 @@ export default function CatalogPage() {
         project.sales_tagline?.toLowerCase().includes(searchLower) ||
         project.tech_stack?.some(t => t.toLowerCase().includes(searchLower));
         
-      return matchesVertical && matchesCategory && matchesSearch;
+      return matchesVertical && matchesType && matchesSearch;
     });
-  }, [projects, searchTerm, selectedVertical, selectedCategory]);
+  }, [projects, searchTerm, selectedVertical, selectedTypes]);
 
   const handleResetFilters = () => {
     setSearchTerm('');
     setSelectedVertical('All');
-    setSelectedCategory(null);
+    setSelectedTypes([]);
   };
 
   return (
@@ -96,11 +98,11 @@ export default function CatalogPage() {
         >
           <div className={styles.heroContent}>
             <h1 className={styles.heroTitle}>
-              Production AI Agents <br />
-              <span className={styles.heroGradient}>Built for Real Business Impact</span>
+              Intelligent AI Agents <br />
+              <span className={styles.heroGradient}>Automating Complex Enterprise Workflows</span>
             </h1>
             <p className={styles.heroSubtitle}>
-              Explore case studies of custom LLM pipelines, secure RAG chatbots, and automated clinical workflows designed to eliminate manual bottlenecks, cut administrative hours, and optimize operational timelines.
+              Experience built, active software integrations that simplify information search, automate report building, and transcribe clinical records with complete data compliance.
             </p>
             <div className={styles.heroActions}>
               <a href="#catalog-grid" className={styles.heroPrimaryBtn}>
@@ -146,7 +148,7 @@ export default function CatalogPage() {
                       key={vert}
                       onClick={() => {
                         setSelectedVertical(vert);
-                        setSelectedCategory(null);
+                        setSelectedTypes([]);
                       }}
                       className={`${styles.pillBtn} ${selectedVertical === vert ? styles.pillActive : ''}`}
                     >
@@ -156,23 +158,29 @@ export default function CatalogPage() {
                 </div>
               </div>
 
-              {/* Capabilities group */}
+              {/* Types group */}
               <div className={styles.techGroup}>
-                <span className={styles.filterLabel}>Capabilities:</span>
+                <span className={styles.filterLabel}>Types:</span>
                 <div className={styles.pillsRow}>
                   <button
-                    onClick={() => setSelectedCategory(null)}
-                    className={`${styles.pillBtnSmall} ${selectedCategory === null ? styles.pillActiveSmall : ''}`}
+                    onClick={() => setSelectedTypes([])}
+                    className={`${styles.pillBtnSmall} ${selectedTypes.length === 0 ? styles.pillActiveSmall : ''}`}
                   >
-                    All Capabilities
+                    All Types
                   </button>
-                  {categories.map(cat => (
+                  {typesList.map(typeItem => (
                     <button
-                      key={cat}
-                      onClick={() => setSelectedCategory(cat === selectedCategory ? null : cat)}
-                      className={`${styles.pillBtnSmall} ${selectedCategory === cat ? styles.pillActiveSmall : ''}`}
+                      key={typeItem}
+                      onClick={() => {
+                        setSelectedTypes(prev =>
+                          prev.includes(typeItem)
+                            ? prev.filter(t => t !== typeItem)
+                            : [...prev, typeItem]
+                        );
+                      }}
+                      className={`${styles.pillBtnSmall} ${selectedTypes.includes(typeItem) ? styles.pillActiveSmall : ''}`}
                     >
-                      {cat}
+                      {formatTypeLabel(typeItem)}
                     </button>
                   ))}
                 </div>
@@ -186,7 +194,7 @@ export default function CatalogPage() {
             className={`${styles.sectionHeader} reveal-item ${headerRevealed ? 'revealed' : ''}`}
           >
             <h2 className={styles.sectionTitle}>
-              {searchTerm || selectedVertical !== 'All' || selectedCategory ? 'Filtered Results' : 'Featured Catalog'}
+              {searchTerm || selectedVertical !== 'All' || selectedTypes.length > 0 ? 'Filtered Results' : 'Featured Catalog'}
             </h2>
             <span className={styles.sectionCount}>{filteredProjects.length} matching</span>
           </div>
@@ -203,7 +211,7 @@ export default function CatalogPage() {
                     image={project.image}
                     color={project.color}
                     gradient={project.gradient}
-                    capabilities={project.capabilities}
+                    types={project.types}
                     demo_url={project.demo_url}
                     use_iframe={project.use_iframe}
                     sales_tagline={project.sales_tagline}
@@ -227,7 +235,6 @@ export default function CatalogPage() {
             </div>
           )}
         </section>
-      </ContentLayout>
-    </div>
+      </ContentLayout>    </div>
   );
 }

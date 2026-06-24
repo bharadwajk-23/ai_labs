@@ -1,6 +1,7 @@
 import { memo, type CSSProperties } from 'react';
 import { Link } from 'react-router-dom';
 import { useScrollReveal } from '../hooks/useScrollReveal';
+import { formatTypeLabel } from '../utils/format';
 import styles from './ProjectTile.module.css';
 
 interface ProjectTileProps {
@@ -12,7 +13,7 @@ interface ProjectTileProps {
   image: string;
   color: string;
   gradient: string;
-  capabilities: string[];
+  types: string[];
   demo_url?: string;
   use_iframe?: boolean;
   sales_tagline?: string;
@@ -27,7 +28,7 @@ export const ProjectTile = memo(function ProjectTile({
   image,
   color,
   gradient,
-  capabilities,
+  types,
   sales_tagline,
 }: ProjectTileProps) {
   const [tileRef, isRevealed] = useScrollReveal<HTMLAnchorElement>(0.05, true);
@@ -45,15 +46,15 @@ export const ProjectTile = memo(function ProjectTile({
     const height = rect.height;
     const centerX = width / 2;
     const centerY = height / 2;
-    
+
     // Normalized delta (-0.5 to 0.5)
     const deltaX = (x - centerX) / width;
     const deltaY = (y - centerY) / height;
-    
+
     // Calculate rotation angles (max 6deg tilt for a premium, subtle effect)
     const rotateY = (deltaX * 6).toFixed(2);
     const rotateX = -(deltaY * 6).toFixed(2);
-    
+
     tileRef.current.style.setProperty('--tilt-x', `${rotateX}deg`);
     tileRef.current.style.setProperty('--tilt-y', `${rotateY}deg`);
   };
@@ -85,22 +86,22 @@ export const ProjectTile = memo(function ProjectTile({
 
       <div className={styles.body}>
         <h3 className={styles.title}>{title}</h3>
-        
+
         {sales_tagline && (
           <p className={styles.salesTagline}>{sales_tagline}</p>
         )}
-        
+
         <p className={styles.description}>{description}</p>
-        
+
         <div className={styles.techStack}>
-          {capabilities.map(cap => (
-            <span key={cap} className={styles.techBadge}>{cap}</span>
+          {types.map(t => (
+            <span key={t} className={styles.techBadge}>{formatTypeLabel(t)}</span>
           ))}
         </div>
 
         <div className={styles.footer}>
           <span className={styles.cta}>
-            Explore Case Study
+            Explore
             <svg
               className={styles.arrowIcon}
               width="14"

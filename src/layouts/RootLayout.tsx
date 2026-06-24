@@ -1,5 +1,5 @@
 import { Link, Outlet, useLocation } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, FormEvent } from 'react';
 import AmbientBackground from '../components/AmbientBackground';
 import CursorGlow from '../components/CursorGlow';
 import styles from './RootLayout.module.css';
@@ -41,6 +41,25 @@ export default function RootLayout() {
   }, [splashState]);
 
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isContactOpen, setIsContactOpen] = useState(false);
+  const [contactName, setContactName] = useState('');
+  const [contactEmail, setContactEmail] = useState('');
+  const [contactMessage, setContactMessage] = useState('');
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const handleContactSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    if (!contactName || !contactEmail || !contactMessage) return;
+    setIsSubmitted(true);
+  };
+
+  const closeContactModal = () => {
+    setIsContactOpen(false);
+    setIsSubmitted(false);
+    setContactName('');
+    setContactEmail('');
+    setContactMessage('');
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -76,8 +95,7 @@ export default function RootLayout() {
                 <circle cx="78" cy="22" r="10" fill="#107c41" />
                 <circle cx="50" cy="50" r="7" fill="var(--color-brand)" />
                 <circle cx="50" cy="82" r="10" fill="#0f4c81" />
-                {/* Dynamic S-curve node connection */}
-                <path d="M32 36 C 42 26, 58 26, 68 36 C 78 46, 22 56, 32 66 C 42 76, 58 76, 68 66" stroke="var(--color-brand-mid)" strokeWidth="5" strokeLinecap="round" fill="none" opacity="0.8" />
+
               </svg>
             </div>
             <div className={styles.splashLogoText}>
@@ -115,8 +133,7 @@ export default function RootLayout() {
                 <circle cx="78" cy="22" r="10" fill="#107c41" />
                 <circle cx="50" cy="50" r="7" fill="var(--color-brand)" />
                 <circle cx="50" cy="82" r="10" fill="#0f4c81" />
-                {/* Dynamic S-curve node connection */}
-                <path d="M32 36 C 42 26, 58 26, 68 36 C 78 46, 22 56, 32 66 C 42 76, 58 76, 68 66" stroke="var(--color-brand-mid)" strokeWidth="5" strokeLinecap="round" fill="none" opacity="0.8" />
+
               </svg>
               <div className={styles.logoText}>
                 <div className={styles.logoWordmark}>
@@ -137,6 +154,20 @@ export default function RootLayout() {
             <span className={styles.navSubtitle}>Enterprise-Grade AI Agents & System Integrations</span>
           </div>
           <div className={styles.navRight}>
+            <a
+              href="https://youngsoft.in/about-us/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.navLink}
+            >
+              About Us
+            </a>
+            <button
+              onClick={() => setIsContactOpen(true)}
+              className={styles.navCtaBtn}
+            >
+              Connect with Us
+            </button>
             <button
               onClick={() => setTheme(theme === 'obsidian' ? 'light' : 'obsidian')}
               className={styles.themeToggle}
@@ -200,6 +231,82 @@ export default function RootLayout() {
           </p>
         </div>
       </footer>
+
+      {isContactOpen && (
+        <div className={styles.modalBackdrop} onClick={closeContactModal}>
+          <div className={styles.contactCardWrapper} onClick={(e) => e.stopPropagation()}>
+            <div className={styles.cardGlow} />
+            <div className={styles.contactCard}>
+              <button className={styles.modalCloseBtn} onClick={closeContactModal} aria-label="Close modal">
+                ✕
+              </button>
+              
+              {!isSubmitted ? (
+                <form onSubmit={handleContactSubmit} className={styles.contactForm}>
+                  <h3 className={styles.formTitle}>Connect with Us</h3>
+                  <p className={styles.formSub}>
+                    Have a custom AI requirement or want to discuss enterprise solutions? Drop us a line below.
+                  </p>
+                  
+                  <div className={styles.formField}>
+                    <label className={styles.formLabel} htmlFor="contact-name">Name</label>
+                    <input
+                      id="contact-name"
+                      type="text"
+                      required
+                      placeholder="Your Name"
+                      className={styles.formInput}
+                      value={contactName}
+                      onChange={(e) => setContactName(e.target.value)}
+                    />
+                  </div>
+                  
+                  <div className={styles.formField}>
+                    <label className={styles.formLabel} htmlFor="contact-email">Email</label>
+                    <input
+                      id="contact-email"
+                      type="email"
+                      required
+                      placeholder="you@example.com"
+                      className={styles.formInput}
+                      value={contactEmail}
+                      onChange={(e) => setContactEmail(e.target.value)}
+                    />
+                  </div>
+                  
+                  <div className={styles.formField}>
+                    <label className={styles.formLabel} htmlFor="contact-message">Message</label>
+                    <textarea
+                      id="contact-message"
+                      required
+                      rows={4}
+                      placeholder="Tell us about your project/requirements..."
+                      className={styles.formTextarea}
+                      value={contactMessage}
+                      onChange={(e) => setContactMessage(e.target.value)}
+                    />
+                  </div>
+                  
+                  <button type="submit" className={styles.submitBtn}>
+                    Send Message
+                  </button>
+                </form>
+              ) : (
+                <div className={styles.successContainer}>
+                  <div className={styles.successIcon}>✓</div>
+                  <h3 className={styles.successTitle}>Thank you, {contactName}!</h3>
+                  <p className={styles.successDesc}>
+                    Your message has been sent. We'll reach out to you at <strong>{contactEmail}</strong> within 24 hours.
+                  </p>
+                  <button className={styles.successCloseBtn} onClick={closeContactModal}>
+                    Close
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

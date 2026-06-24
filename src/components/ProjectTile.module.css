@@ -226,6 +226,13 @@
   color: var(--color-text-primary);
   transform: translateZ(15px);
   transition: color var(--transition-fast), transform var(--transition-spring);
+  
+  /* Normalize title height to keep adjacent taglines aligned in a row */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  height: 2.6em;
 }
 
 .tile:hover .title {
