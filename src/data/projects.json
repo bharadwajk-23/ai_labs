@@ -1,25 +1,16 @@
 [
   {
     "id": "pronex-scriber-agent",
-    "title": "Pronex Scriber Agent",
+    "title": "Clinical Scribe Agent",
     "description": "Empowers healthcare providers to deliver undivided patient care by automating in-session clinical documentation and charting workflows.",
-    "client": "Pronex / Youngsoft India",
+    "client": "Clinical Services Group",
     "demo_url": "https://transcribes-pronex.youngsoft.com/",
     "color": "#10b981",
     "gradient": "linear-gradient(135deg, #06b6d4 0%, #10b981 100%)",
     "image": "/images/pronex-scriber-agent.png",
     "use_iframe": false,
-    "tech_stack": [],
     "types": [
       "transcription"
-    ],
-    "highlights": [
-      "Transcribes doctor-patient conversations live in the browser with no external app install required.",
-      "Generates six clinically relevant summary formats — including SOAP Notes — from a single recorded session.",
-      "Built-in security masking keeps patient data protected during transcription.",
-      "Delivers summaries section-by-section as soon as each is ready to keep workflow moving.",
-      "Cross-platform delivery: access summaries anywhere on web or browser tools.",
-      "Fully operational and live in production for immediate clinician use."
     ],
     "features": [
       {
@@ -44,12 +35,6 @@
       }
     ],
     "sales_tagline": "Automate Clinical Documentation and Simplify Clinician Workflows.",
-    "why_buy": [
-      "Eliminates administrative burnout by automating SOAP notes and charts in real-time.",
-      "Ensures zero compliance risk with enterprise-grade, in-browser PHI masking.",
-      "Requires no software installation—runs directly inside your existing browser workflow.",
-      "Improves patient care quality by letting doctors focus on patients instead of typing."
-    ],
     "time_savings": [
       "Cuts typical charting times significantly per patient visit.",
       "Saves clinicians valuable hours every week, returning time for additional patient care."
@@ -57,23 +42,16 @@
   },
   {
     "id": "mta-health-plan-chatbot",
-    "title": "MyTruAdvantage Health Plan Chatbot",
+    "title": "Health Plan Navigator Chatbot",
     "description": "Provides health plan members and insurance agents with immediate, natural language access to complex coverage benefits and provider directories.",
-    "client": "SIHO Insurance Services & MyTruAdvantage",
+    "client": "Health Insurance Provider",
     "demo_url": "https://dev.mytruadvantage.com",
     "color": "#00adb5",
     "gradient": "linear-gradient(135deg, #00adb5 0%, #005f63 100%)",
     "image": "/images/mta-health-plan-chatbot.png",
-    "tech_stack": [],
     "types": [
       "knowledge search",
       "patient&clinic portals"
-    ],
-    "highlights": [
-      "Provides instant support 24/7 for health plan and coverage questions.",
-      "Helps members find local doctors and pharmacies in seconds.",
-      "Chats naturally in both English and Spanish.",
-      "Directly connects members to customer support staff when extra help is needed."
     ],
     "features": [
       {
@@ -94,12 +72,6 @@
       }
     ],
     "sales_tagline": "Resolve Member Benefits Queries Automatically and Instantly, 24/7.",
-    "why_buy": [
-      "Dramatically reduces call center load by resolving coverage and benefit FAQs instantly.",
-      "Delivers high-quality support in English and Spanish with native-level language switching.",
-      "Increases member satisfaction with an instant, easy-to-use search for local pharmacies and doctors.",
-      "Acts as a lead-capture engine, registering member interest and routing complex cases to live agents."
-    ],
     "time_savings": [
       "Reduces customer support average handling time (AHT) to zero for self-served members.",
       "Connects members with correct local doctors and pharmacies instantly."
@@ -107,23 +79,15 @@
   },
   {
     "id": "ysiras-recruitment-assessment",
-    "title": "YSIRas — Recruitment Assessment System",
+    "title": "Recruitment Assessment System",
     "description": "Accelerates enterprise hiring cycles by standardizing candidate evaluations and automating routine applicant screening tasks.",
-    "client": "Youngsoft India & Enterprise Recruiting Partners",
+    "client": "Enterprise Recruiting Partners",
     "demo_url": "https://recruitment.youngsoft.in",
     "color": "#235ba8",
     "gradient": "linear-gradient(135deg, #235ba8 0%, #0f356b 100%)",
     "image": "/images/ysiras-walkthrough.webp",
-    "tech_stack": [],
     "types": [
       "reports"
-    ],
-    "highlights": [
-      "Streamlines candidate evaluation by automatically reviewing resumes against job descriptions.",
-      "Standardizes interviewer evaluations and scores to eliminate hiring bias.",
-      "Ensures secure candidate screening with single-use meeting links and expiration controls.",
-      "Includes a fully collaborative dashboard for recruiting teams and hiring managers.",
-      "Accessible on any device, providing a clean experience for candidates and recruiters alike."
     ],
     "features": [
       {
@@ -156,12 +120,6 @@
       }
     ],
     "sales_tagline": "Cut Candidate Screening Time and Hire Top Talent Faster.",
-    "why_buy": [
-      "Automates candidate evaluation by grading resume alignment and interview answers automatically.",
-      "Generates tailored screening questions to test specific candidate competencies.",
-      "Provides secure, built-in high-definition video meeting rooms with self-expiring links.",
-      "Syncs seamlessly with your existing Applicant Tracking Systems (ATS)."
-    ],
     "time_savings": [
       "Reduces manual resume screening and shortlist processing time significantly.",
       "Shortens the overall recruiting cycle from weeks to days, helping you secure top candidates before competitors do."
@@ -169,24 +127,16 @@
   },
   {
     "id": "ptmantra-rtm-platform",
-    "title": "ptMantra Remote Therapeutic Monitoring (RTM) Platform",
+    "title": "Remote Therapeutic Monitoring (RTM) Platform",
     "description": "Enables physical therapy clinics to monitor patient recovery outside office visits while establishing recurring remote care revenue streams.",
-    "client": "ptMantra",
+    "client": "Physical Therapy Clinic",
     "demo_url": "https://ptmantra.com",
     "color": "#9b51e0",
     "gradient": "linear-gradient(135deg, #9b51e0 0%, #4c2870 100%)",
     "image": "/images/ptmantra-rtm-platform.png",
     "use_iframe": false,
-    "tech_stack": [],
     "types": [
       "patient&clinic portals"
-    ],
-    "highlights": [
-      "Improves patient adherence through digital engagement and reminders.",
-      "Provides real-time visibility into patient recovery outside the clinic.",
-      "Supports RTM reimbursement and clinical documentation workflows.",
-      "Designed for PT, OT, orthopedics, and primary care providers.",
-      "Combines patient engagement, performance tracking, and analytics in one platform."
     ],
     "features": [
       {
@@ -211,12 +161,6 @@
       }
     ],
     "sales_tagline": "Unlock New Revenue Streams and Improve Patient Exercise Adherence.",
-    "why_buy": [
-      "Enables PT practices to easily capture Medicare RTM reimbursements (CPT billing codes).",
-      "Drives patient compliance with customized 3D exercise guidance and SMS reminders.",
-      "Gives clinicians real-time visibility into patient recovery outside the clinic.",
-      "Ensures full security and peace of mind with a HIPAA-compliant SaaS platform."
-    ],
     "time_savings": [
       "Reduces clinician administrative overhead by automating patient compliance tracking and billing audits.",
       "Enables monitoring of significantly more patients simultaneously compared to manual check-ins."
@@ -224,24 +168,16 @@
   },
   {
     "id": "ortele-telemedicine-platform",
-    "title": "Ortele Telemedicine Platform",
+    "title": "Telemedicine Platform",
     "description": "Connects clinical facilities and remote patients with licensed specialists via secure, low-latency virtual consultations.",
-    "client": "Ortele Health Corporation",
+    "client": "Telemedicine Specialist Provider",
     "demo_url": "https://ortele.com",
     "color": "#06b6d4",
     "gradient": "linear-gradient(135deg, #0891b2 0%, #06b6d4 100%)",
     "image": "/images/ortele-telemedicine-platform.png",
     "use_iframe": false,
-    "tech_stack": [],
     "types": [
       "patient&clinic portals"
-    ],
-    "highlights": [
-      "Enables remote access to specialty medical care via secure video platform.",
-      "Improves continuity of care and reduces unnecessary hospital visits.",
-      "Helps providers expand reach beyond geographic limitations.",
-      "Supports flexible telemedicine opportunities for medical specialists.",
-      "Accepts multiple insurance plans, including Medicaid."
     ],
     "features": [
       {
@@ -266,12 +202,6 @@
       }
     ],
     "sales_tagline": "Bridges Specialty Medical Gaps and Reduces Hospital Readmissions.",
-    "why_buy": [
-      "Expands clinical reach by connecting patients with remote specialists instantly.",
-      "Reduces expensive emergency room transfers and unnecessary clinic visits.",
-      "Enhances patient retention through smooth, high-fidelity telemedicine follow-ups.",
-      "Maintains clinic accessibility by accepting multiple insurances including Medicaid."
-    ],
     "time_savings": [
       "Saves patients hours of travel and waiting room time by enabling instant specialist consults.",
       "Accelerates specialist consult scheduling significantly, reducing long wait times."
@@ -279,24 +209,16 @@
   },
   {
     "id": "planetrehab-therapy-platform",
-    "title": "Planetrehab Practice Management Platform",
+    "title": "Practice Management EHR Platform",
     "description": "Streamlines physical therapy practice operations by integrating clinical scheduling, electronic health records, and billing workflows into a single interface.",
-    "client": "Planetrehab Inc.",
+    "client": "Physical Therapy Practice Management",
     "demo_url": "https://planetrehab.com",
     "color": "#d946ef",
     "gradient": "linear-gradient(135deg, #a855f7 0%, #d946ef 100%)",
     "image": "/images/planetrehab-physical-therapy.png",
     "use_iframe": false,
-    "tech_stack": [],
     "types": [
       "patient&clinic portals"
-    ],
-    "highlights": [
-      "All-in-one EHR and clinic management platform for therapy practices.",
-      "Integrates RTM to generate additional revenue from home-based patient care.",
-      "AI tools streamline documentation and reduce administrative workload.",
-      "Includes billing, RCM, and patient engagement in one system.",
-      "Helps physical therapy clinics improve efficiency and cash flow."
     ],
     "features": [
       {
@@ -321,12 +243,6 @@
       }
     ],
     "sales_tagline": "Cut Therapist Administrative Documentation Load on an All-in-One EHR.",
-    "why_buy": [
-      "Integrates scheduling, billing, EHR, and RTM into a single, cohesive interface.",
-      "Speeds up clinical documentation using AI-powered clinical templates and transcription.",
-      "Optimizes cash flow with clean-claim scrubbing and automated billing submission.",
-      "Keeps patients engaged with text/email reminders and an interactive patient portal."
-    ],
     "time_savings": [
       "Reduces clinician documentation and scheduling workloads, saving valuable hours.",
       "Cuts average billing claim lifecycle processing and collections duration."
@@ -334,27 +250,16 @@
   },
   {
     "id": "drx-prescription-platform",
-    "title": "DRX Digital Prescription Management & Virtual Assistance Platform",
+    "title": "Digital Prescription & Virtual Assistant Platform",
     "description": "Modernizes medication management by connecting clinicians with nationwide pharmacy networks and real-time electronic prescribing tools.",
-    "client": "Healthcare Providers & e-Prescribing Organizations",
+    "client": "e-Prescribing Network",
     "demo_url": "https://h2hsolutions.com/drx-virtual-assitance/",
     "color": "#e11d48",
     "gradient": "linear-gradient(135deg, #be123c 0%, #e11d48 100%)",
     "image": "/images/drx-prescription-platform.png",
     "use_iframe": false,
-    "tech_stack": [],
     "types": [
       "predictive analytics"
-    ],
-    "highlights": [
-      "End-to-end digital prescription lifecycle management.",
-      "Supports secure controlled substance prescribing, state monitoring programs, and electronic prior authorizations.",
-      "Integrated with major nationwide pharmacy networks for seamless electronic transmission.",
-      "Provides real-time medication history, eligibility, and formulary intelligence.",
-      "Includes AI-powered virtual assistance for prescriber support.",
-      "Delivers predictive medication adherence analytics.",
-      "Enhances prescribing safety through advanced clinical decision support.",
-      "Integrates with existing healthcare records software."
     ],
     "features": [
       {
@@ -399,12 +304,6 @@
       }
     ],
     "sales_tagline": "Ensure High Prescribing Accuracy and Surescripts-Certified Electronic Workflows.",
-    "why_buy": [
-      "Minimizes pharmacy callbacks and prescription errors with real-time drug interaction checks.",
-      "Speeds up treatment plans with integrated electronic Prior Authorization (ePA).",
-      "Complies with all state requirements through certified EPCS and PDMP connections.",
-      "Drives patient adherence with AI-powered medication refill and compliance prediction."
-    ],
     "time_savings": [
       "Cuts staff time spent on phone calls with insurance companies and pharmacies.",
       "Reduces prior authorization request timelines from days to instant approvals."
@@ -412,24 +311,16 @@
   },
   {
     "id": "nl-to-sql-smart-reports",
-    "title": "NL-to-SQL Smart Reports",
+    "title": "Conversational Database Reports",
     "description": "Allows non-technical teams to query database sources and generate business intelligence reports using plain English search.",
-    "client": "Internal Business Intelligence & Reporting Teams",
+    "client": "Business Intelligence & Reporting Teams",
     "demo_url": "https://smartreports-pronex.youngsoft.com/login",
     "color": "#059669",
     "gradient": "linear-gradient(135deg, #047857 0%, #059669 100%)",
     "image": "/images/nl-to-sql-platform.png",
     "use_iframe": false,
-    "tech_stack": [],
     "types": [
       "reports"
-    ],
-    "highlights": [
-      "Converts natural language questions into accurate data reports instantly.",
-      "Automatically translates database fields into clear, business-friendly terminology using AI.",
-      "Allows administrators to easily customize data descriptions and naming.",
-      "Provides structured results alongside simple text explanations of the data.",
-      "Includes visualization recommendations for analytical reporting workflows."
     ],
     "features": [
       {
@@ -454,12 +345,6 @@
       }
     ],
     "sales_tagline": "Query Databases in Plain English and Reduce Analyst Request Backlogs.",
-    "why_buy": [
-      "Allows non-technical staff to extract data insights without writing a single line of code.",
-      "Enriches databases automatically with business glossary mapping using AI schemas.",
-      "Safeguards database structure through read-only schemas and secure metadata query generation.",
-      "Recommends charts and visualization layouts based on the query context."
-    ],
     "time_savings": [
       "Reduces data analyst ad-hoc request backlogs through self-service querying.",
       "Generates executable SQL and retrieves structured results instantly compared to manual requests."
@@ -469,7 +354,7 @@
     "id": "intelligent-reporting-system",
     "title": "Intelligent Reporting System",
     "description": "Translates complex clinical databases into readable tables and reports for healthcare administrators through conversational search.",
-    "client": "Planet Rehab",
+    "client": "Outpatient Physical Therapy Practice",
     "demo_url": "",
     "color": "#6c63ff",
     "gradient": "linear-gradient(135deg, #6c63ff 0%, #3b37a8 100%)",
@@ -479,17 +364,10 @@
       "/images/smart-reports-login.png",
       "/images/smart-reports-telemetry.png"
     ],
-    "tech_stack": [],
     "types": [
       "reports",
       "knowledge search",
       "patient&clinic portals"
-    ],
-    "highlights": [
-      "Converts plain English questions into accurate data tables in seconds.",
-      "Supports multiple healthcare practices from a single deployment.",
-      "Automatically maps and understands each practice's data terminology using AI.",
-      "Tracks usage, response times, and system metrics per practice through a central dashboard."
     ],
     "features": [
       {
@@ -510,12 +388,6 @@
       }
     ],
     "sales_tagline": "Query Operational Data in Plain English and Reduce Custom Report Backlogs.",
-    "why_buy": [
-      "Allows non-technical staff and clinic administrators to retrieve structured tables without writing code.",
-      "Secures practice databases through strict multi-tenant separation and read-only schema executions.",
-      "Enriches metadata automatically using semantic embeddings, aligning queries with business terminology.",
-      "Includes a dashboard to monitor API consumption, response performance, and user activity."
-    ],
     "time_savings": [
       "Saves valuable hours for clinic managers by automating custom operational reports.",
       "Eliminates wait times for database extracts, delivering data responses instantly."

@@ -71,8 +71,7 @@ export default function CatalogPage() {
         project.title.toLowerCase().includes(searchLower) ||
         project.description.toLowerCase().includes(searchLower) ||
         project.client.toLowerCase().includes(searchLower) ||
-        project.sales_tagline?.toLowerCase().includes(searchLower) ||
-        project.tech_stack?.some(t => t.toLowerCase().includes(searchLower));
+        project.sales_tagline?.toLowerCase().includes(searchLower);
         
       return matchesVertical && matchesType && matchesSearch;
     });
