@@ -11,7 +11,8 @@ const typesList = [
   'reports',
   'predictive analytics',
   'transcription',
-  'patient&clinic portals'
+  'patient&clinic portals',
+  'voice'
 ];
 
 type VerticalType = 'All' | 'Healthcare' | 'Insurance' | 'Recruitment';
@@ -39,7 +40,8 @@ export default function CatalogPage() {
       projectId.includes('planetrehab') || 
       projectId.includes('drx') ||
       projectId.includes('mta-health-plan-chatbot') ||
-      projectId.includes('intelligent-reporting-system')
+      projectId.includes('intelligent-reporting-system') ||
+      projectId.includes('medicare')
     ) {
       verticals.push('Healthcare');
     }

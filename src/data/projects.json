@@ -353,9 +353,9 @@
   {
     "id": "intelligent-reporting-system",
     "title": "Intelligent Reporting System",
-    "description": "Translates complex clinical databases into readable tables and reports for healthcare administrators through conversational search.",
-    "client": "Outpatient Physical Therapy Practice",
-    "demo_url": "",
+    "description": "Translates complex clinical databases into readable tables and reports and documentation for healthcare administrators through conversational search.",
+    "client": "Healthcare Data Reporting System",
+    "demo_url": "https://ailabs.youngsoft.com/reports/login",
     "color": "#6c63ff",
     "gradient": "linear-gradient(135deg, #6c63ff 0%, #3b37a8 100%)",
     "image": "/images/smart-reports-ai.png",
@@ -375,22 +375,63 @@
         "description": "Allows users to search data in plain language and returns results as clear, readable tables. Includes automatic correction to refine searches instantly if needed."
       },
       {
-        "name": "AI Data Terminology Mapping",
-        "description": "Maps complex database structures to clear business descriptions. When a user asks a question, the AI retrieves only the relevant terminology to keep responses accurate."
+        "name": "Automated CRM Escalation",
+        "description": "If a user's conversational query cannot be answered by the database, the AI automatically creates a support ticket in the CRM to ensure a team member resolves the inquiry."
       },
       {
-        "name": "Secure Multi-Practice Isolation",
-        "description": "Each healthcare practice gets its own isolated data connection and search history, ensuring complete patient data security and privacy under role-based controls."
+        "name": "AI Data Terminology Mapping",
+        "description": "Maps complex database structures to clear business descriptions. When a user asks a question, the AI retrieves only the relevant terminology to keep responses accurate."
       },
       {
         "name": "Management Dashboard",
         "description": "Practice administrators can update data terms, monitor search frequency, and track system speed and resource usage through a clean administrative panel."
       }
     ],
-    "sales_tagline": "Query Operational Data in Plain English and Reduce Custom Report Backlogs.",
+    "sales_tagline": "Query Operational Data in Plain English.",
     "time_savings": [
-      "Saves valuable hours for clinic managers by automating custom operational reports.",
+      "Saves valuable hours by automating custom operational reports.",
       "Eliminates wait times for database extracts, delivering data responses instantly."
+    ]
+  },
+  {
+    "id": "medicare-call-assistant",
+    "title": "Voice Agent",
+    "description": "Interacts directly with patients via automated voice calls to send reminders, follow up on missed visits, and schedule doctor appointments, streamlining clinic workflows.",
+    "client": "Medicare Clinic",
+    "demo_url": "https://patient-remainder.onrender.com/index/",
+    "color": "#3b82f6",
+    "gradient": "linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)",
+    "image": "/images/medicare-call-assistant.png",
+    "use_iframe": false,
+    "types": [
+      "patient&clinic portals",
+      "voice"
+    ],
+    "screenshots": [
+      "/images/medicare-call-assistant.png"
+    ],
+    "features": [
+      {
+        "name": "Automated Call Interaction",
+        "description": "Interacts directly with patients whose missed days criteria are met, initiating calls to remind them of follow-ups and improve clinic attendance rates."
+      },
+      {
+        "name": "Doctor Appointment Scheduler",
+        "description": "Coordinates calendars and books direct patient appointments with healthcare providers like Dr. Johnson based on interactive patient responses."
+      },
+      {
+        "name": "Real-Time Patient Dashboard",
+        "description": "Provides administrators a clean interface listing names, phone numbers, DOB, missed days count, and primary providers, with options to trigger calls manually."
+      },
+      {
+        "name": "Seamless EHR Integration",
+        "description": "Logs call history, details, and scheduled appointments back into the clinic database to ensure synchronized patient record management."
+      }
+    ],
+    "sales_tagline": "Automate Patient Outreach and Doctor Appointment Booking with AI Call Agents.",
+    "time_savings": [
+      "Saves valuable hours of manual outreach workloads for clinic administrative staff.",
+      "Reduces appointment no-show rates by automating proactive patient reminder calls."
     ]
   }
 ]
