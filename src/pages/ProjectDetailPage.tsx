@@ -5,34 +5,44 @@ import { FeatureCard } from '../components/FeatureCard';
 import NotFound from '../components/NotFound';
 import { useProject } from '../hooks/useProjects';
 import { useScrollReveal } from '../hooks/useScrollReveal';
+import type { Project } from '../data/schema';
 import styles from './ProjectDetailPage.module.css';
 
 export default function ProjectDetailPage() {
   const { id } = useParams();
   const project = useProject(id ?? '');
+  const [projectState, setProjectState] = useState<typeof project>(project);
+  const [isAdmin, setIsAdmin] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
 
   useEffect(() => {
+    setProjectState(project);
     setSelectedImage(null);
     setIsLightboxOpen(false);
-  }, [id]);
+  }, [id, project]);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setIsAdmin(!!localStorage.getItem('ys_admin_token'));
+    }
+  }, []);
 
   // Auto-scrolling slideshow for screenshots
   useEffect(() => {
-    if (!project || !project.screenshots || project.screenshots.length <= 1) return;
+    if (!projectState || !projectState.screenshots || projectState.screenshots.length <= 1) return;
 
     const intervalId = setInterval(() => {
       setSelectedImage((prevSelected) => {
-        const currentImage = prevSelected ?? project.image;
-        const currentIndex = project.screenshots!.indexOf(currentImage);
-        const nextIndex = (currentIndex + 1) % project.screenshots!.length;
-        return project.screenshots![nextIndex];
+        const currentImage = prevSelected ?? projectState.image;
+        const currentIndex = projectState.screenshots!.indexOf(currentImage);
+        const nextIndex = (currentIndex + 1) % projectState.screenshots!.length;
+        return projectState.screenshots![nextIndex];
       });
     }, 4000);
 
     return () => clearInterval(intervalId);
-  }, [selectedImage, id, project?.screenshots, project?.image]);
+  }, [selectedImage, id, projectState?.screenshots, projectState?.image]);
 
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -47,20 +57,70 @@ export default function ProjectDetailPage() {
   const [headerRef, headerRevealed] = useScrollReveal<HTMLDivElement>(0.02, true);
   const [mockupRef, mockupRevealed] = useScrollReveal<HTMLDivElement>(0.05, true);
   const [aboutRef, aboutRevealed] = useScrollReveal<HTMLDivElement>(0.05, true);
-  const [savingsRef, savingsRevealed] = useScrollReveal<HTMLDivElement>(0.05, true);
   const [ctaRef, ctaRevealed] = useScrollReveal<HTMLDivElement>(0.05, true);
   const [featuresRef, featuresRevealed] = useScrollReveal<HTMLDivElement>(0.05, true);
 
-  if (!project) {
+  const handleDetailScreenshotsUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (!files || files.length === 0) return;
+
+    const promises = Array.from(files).map(file => {
+      return new Promise<string>((resolve) => {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          resolve(event.target?.result as string);
+        };
+        reader.readAsDataURL(file);
+      });
+    });
+
+    Promise.all(promises).then(base64Images => {
+      if (!projectState) return;
+
+      const currentScreenshots = projectState.screenshots ? [...projectState.screenshots] : [];
+      const updatedScreenshots = [...currentScreenshots, ...base64Images];
+
+      const updatedProject = {
+        ...projectState,
+        screenshots: updatedScreenshots
+      };
+
+      try {
+        const customProjectsStr = localStorage.getItem('ys_custom_projects') || '[]';
+        const customProjects = JSON.parse(customProjectsStr) as Project[];
+        const index = customProjects.findIndex(p => p.id === projectState.id);
+
+        if (index !== -1) {
+          customProjects[index] = updatedProject;
+        } else {
+          customProjects.push(updatedProject);
+        }
+        localStorage.setItem('ys_custom_projects', JSON.stringify(customProjects));
+        setProjectState(updatedProject);
+        
+        if (base64Images[0]) {
+          setSelectedImage(base64Images[0]);
+        }
+      } catch (err) {
+        console.error('Error saving uploaded screenshots:', err);
+      }
+    });
+  };
+
+  if (!projectState) {
     return <NotFound message={`No project found with id "${id}"`} />;
   }
+
+  const galleryImages = projectState.screenshots && projectState.screenshots.length > 0
+    ? projectState.screenshots
+    : [];
 
   return (
     <div
       className={styles.page}
       style={{
-        '--brand-color': project.color,
-        '--brand-gradient': project.gradient,
+        '--brand-color': projectState.color,
+        '--brand-gradient': projectState.gradient,
       } as CSSProperties}
     >
       {/* ── Background Glow Blobs ────────────────────── */}
@@ -83,7 +143,8 @@ export default function ProjectDetailPage() {
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
-            />
+            >
+            </path>
           </svg>
           Back to catalog
         </Link>
@@ -100,11 +161,11 @@ export default function ProjectDetailPage() {
               style={{ '--reveal-delay': isLoaded ? '0ms' : '100ms' } as CSSProperties}
             >
               <div className={styles.mockupGlow} />
-              {project.use_iframe && project.demo_url ? (
+              {projectState.use_iframe && projectState.demo_url ? (
                 <div className={styles.iframeWrapper}>
                   <iframe
-                    src={project.demo_url}
-                    title={project.title}
+                    src={projectState.demo_url}
+                    title={projectState.title}
                     className={styles.detailIframe}
                   />
                 </div>
@@ -116,27 +177,26 @@ export default function ProjectDetailPage() {
                     aria-label="Open full image"
                   >
                     <img
-                      key={selectedImage ?? project.image}
-                      src={selectedImage ?? project.image}
-                      alt={project.title}
+                      key={selectedImage ?? projectState.image}
+                      src={selectedImage ?? projectState.image}
+                      alt={projectState.title}
                       className={styles.mockupImage}
                     />
                   </button>
-                  {project.screenshots && project.screenshots.length > 1 && (
+                  {galleryImages.length > 1 && (
                     <div
-                      key={`progress-${selectedImage ?? project.image}`}
+                      key={`progress-${selectedImage ?? projectState.image}`}
                       className={styles.progressBar}
                     />
                   )}
                 </>
               )}
             </div>
-
             {/* Gallery Thumbnails */}
-            {project.screenshots && project.screenshots.length > 0 && (
+            {(galleryImages.length > 0 || isAdmin) && (
               <div className={styles.galleryContainer}>
-                {project.screenshots.map((shot, idx) => {
-                  const isActive = (selectedImage ?? project.image) === shot;
+                {galleryImages.map((shot, idx) => {
+                  const isActive = (selectedImage ?? projectState.image) === shot;
                   return (
                     <button
                       key={idx}
@@ -144,11 +204,53 @@ export default function ProjectDetailPage() {
                       onClick={() => setSelectedImage(shot)}
                       aria-label={`View screenshot ${idx + 1}`}
                     >
-                      <img src={shot} alt={`${project.title} screenshot ${idx + 1}`} className={styles.thumbnailImg} />
+                      <img src={shot} alt={`${projectState.title} screenshot ${idx + 1}`} className={styles.thumbnailImg} />
                       <div className={styles.thumbnailOverlay} />
                     </button>
                   );
                 })}
+
+                {/* Admin direct upload button */}
+                {isAdmin && (
+                  <div className={styles.adminUploadThumbnail}>
+                    <input
+                      type="file"
+                      multiple
+                      accept="image/*"
+                      onChange={handleDetailScreenshotsUpload}
+                      id="detail-screenshot-upload"
+                      className={styles.hiddenFileInput}
+                    />
+                    <label htmlFor="detail-screenshot-upload" className={styles.adminUploadBtn} title="Upload screenshots directly">
+                      ➕ Add Image
+                    </label>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Admin Dedicated Screenshots Upload Section */}
+            {isAdmin && (
+              <div className={styles.adminUploadSection}>
+                <h3 className={styles.adminUploadTitle}>
+                  📸 Project Screenshot Directory Upload
+                </h3>
+                <p className={styles.adminUploadDesc}>
+                  Select or drag multiple screenshots to showcase inside the gallery for this project directory.
+                </p>
+                <div className={styles.dropZone}>
+                  <input
+                    type="file"
+                    multiple
+                    accept="image/*"
+                    onChange={handleDetailScreenshotsUpload}
+                    id="detail-gallery-upload-box"
+                    className={styles.hiddenFileInput}
+                  />
+                  <label htmlFor="detail-gallery-upload-box" className={styles.dropZoneLabel}>
+                    <span>📤 Select Multiple Screenshot Files to Upload</span>
+                  </label>
+                </div>
               </div>
             )}
 
@@ -162,7 +264,7 @@ export default function ProjectDetailPage() {
                 <span className={styles.sectionDot} /> Key Features
               </h2>
               <div className={styles.featuresGrid}>
-                {project.features.map(f => (
+                {projectState.features.map(f => (
                   <FeatureCard key={f.name} name={f.name} description={f.description} />
                 ))}
               </div>
@@ -176,10 +278,9 @@ export default function ProjectDetailPage() {
               className={`${styles.headerArea} reveal-item ${headerRevealed ? 'revealed' : ''}`}
               style={{ '--reveal-delay': isLoaded ? '0ms' : '150ms' } as CSSProperties}
             >
-              <span className={styles.clientLabel}>{project.client}</span>
-              <h1 className={styles.title}>{project.title}</h1>
-              {project.sales_tagline && (
-                <p className={styles.salesTagline}>{project.sales_tagline}</p>
+              <h1 className={styles.title}>{projectState.title}</h1>
+              {projectState.sales_tagline && (
+                <p className={styles.salesTagline}>{projectState.sales_tagline}</p>
               )}
             </div>
 
@@ -192,11 +293,11 @@ export default function ProjectDetailPage() {
               <h2 className={styles.sectionTitle}>
                 <span className={styles.sectionDot} /> Project Summary
               </h2>
-              <p className={styles.description}>{project.description}</p>
+              <p className={styles.description}>{projectState.description}</p>
             </div>
 
             {/* Sandbox Demo CTA Card */}
-            {project.demo_url && (
+            {projectState.demo_url && (
               <div
                 ref={ctaRef}
                 className={`${styles.ctaBox} reveal-item ${ctaRevealed ? 'revealed' : ''}`}
@@ -207,7 +308,7 @@ export default function ProjectDetailPage() {
 
                 <div className={styles.salesActions}>
                   <a
-                    href={project.demo_url}
+                    href={projectState.demo_url}
                     target="_blank"
                     rel="noopener noreferrer"
                     className={styles.primarySalesCta}
@@ -224,29 +325,6 @@ export default function ProjectDetailPage() {
               </div>
             )}
 
-            {/* Time & Operational Savings (Sales Section) */}
-            {project.time_savings && project.time_savings.length > 0 && (
-              <div
-                ref={savingsRef}
-                className={`${styles.contentSection} reveal-item ${savingsRevealed ? 'revealed' : ''}`}
-                style={{ '--reveal-delay': isLoaded ? '0ms' : '350ms' } as CSSProperties}
-              >
-                <h2 className={styles.sectionTitle}>
-                  <span className={styles.sectionDot} /> Workload & Time Savings
-                </h2>
-                <div className={styles.savingsContainer}>
-                  {project.time_savings.map((point, index) => (
-                    <div key={index} className={styles.savingsCard}>
-                      <svg className={styles.clockIcon} width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <circle cx="12" cy="12" r="10" />
-                        <path d="M12 6v6l4 2" />
-                      </svg>
-                      <p className={styles.savingsText}>{point}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
           </div>
         </div>
 
@@ -257,8 +335,8 @@ export default function ProjectDetailPage() {
             ✕
           </button>
           <img
-            src={selectedImage ?? project.image}
-            alt={project.title}
+            src={selectedImage ?? projectState.image}
+            alt={projectState.title}
             className={styles.lightboxImage}
             onClick={(e) => e.stopPropagation()}
           />

@@ -49,6 +49,26 @@ export default function DemoRequestModal({ onClose, preselectedProjectId }: Demo
     
     setStatus('submitting');
     
+    try {
+      const newInquiry = {
+        id: 'demo_' + Math.random().toString(36).substr(2, 9),
+        type: 'demo',
+        name: formData.name,
+        email: formData.email,
+        company: formData.company || '',
+        industry: formData.industry || '',
+        projectId: formData.projectId || '',
+        message: formData.message || '',
+        date: new Date().toISOString(),
+        status: 'unread'
+      };
+      const existingInquiries = JSON.parse(localStorage.getItem('ys_admin_inquiries') || '[]');
+      existingInquiries.unshift(newInquiry);
+      localStorage.setItem('ys_admin_inquiries', JSON.stringify(existingInquiries));
+    } catch (err) {
+      console.error('Error saving demo inquiry:', err);
+    }
+    
     // Simulate API lead capture call
     setTimeout(() => {
       setStatus('success');

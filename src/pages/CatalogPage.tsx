@@ -4,24 +4,47 @@ import { ProjectTile } from '../components/ProjectTile';
 import { useProjects } from '../hooks/useProjects';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import { formatTypeLabel } from '../utils/format';
+import type { Project } from '../data/schema';
 import styles from './CatalogPage.module.css';
-
-const typesList = [
-  'knowledge search',
-  'reports',
-  'predictive analytics',
-  'transcription',
-  'patient&clinic portals',
-  'voice'
-];
-
-type VerticalType = 'All' | 'Healthcare' | 'Insurance' | 'Recruitment';
 
 export default function CatalogPage() {
   const projects = useProjects();
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedVertical, setSelectedVertical] = useState<VerticalType>('All');
+  const [selectedVertical, setSelectedVertical] = useState<string>('All');
   const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
+
+  // Dynamically compile list of all verticals from projects list
+  const allVerticals = useMemo(() => {
+    const list = new Set<string>(['All', 'Healthcare', 'Insurance', 'Recruitment']);
+    projects.forEach(p => {
+      if (p.verticals) {
+        p.verticals.forEach(v => {
+          if (v) list.add(v);
+        });
+      }
+    });
+    return Array.from(list);
+  }, [projects]);
+
+  // Dynamically compile list of all capabilities (types) from projects list
+  const allTypes = useMemo(() => {
+    const list = new Set<string>([
+      'knowledge search',
+      'reports',
+      'predictive analytics',
+      'transcription',
+      'patient&clinic portals',
+      'voice'
+    ]);
+    projects.forEach(p => {
+      if (p.types) {
+        p.types.forEach(t => {
+          if (t) list.add(t);
+        });
+      }
+    });
+    return Array.from(list);
+  }, [projects]);
 
 
 
@@ -30,8 +53,12 @@ export default function CatalogPage() {
   const [headerRef, headerRevealed] = useScrollReveal<HTMLDivElement>(0.05, true);
 
   // Helper to map project to verticals
-  const getVerticals = (projectId: string): VerticalType[] => {
-    const verticals: VerticalType[] = [];
+  const getVerticals = (project: Project): string[] => {
+    if (project.verticals && project.verticals.length > 0) {
+      return project.verticals;
+    }
+    const verticals: string[] = [];
+    const projectId = project.id;
     if (
       projectId.includes('scriber') || 
       projectId.includes('medical') || 
@@ -63,7 +90,7 @@ export default function CatalogPage() {
   // Filter projects based on search + vertical + capability
   const filteredProjects = useMemo(() => {
     return projects.filter(project => {
-      const verticals = getVerticals(project.id);
+      const verticals = getVerticals(project);
       const matchesVertical = selectedVertical === 'All' || verticals.includes(selectedVertical);
       
       const matchesType = selectedTypes.length === 0 || project.types?.some(t => selectedTypes.includes(t));
@@ -144,7 +171,7 @@ export default function CatalogPage() {
               <div className={styles.verticalGroup}>
                 <span className={styles.filterLabel}>Verticals:</span>
                 <div className={styles.pillsRow}>
-                  {(['All', 'Healthcare', 'Insurance', 'Recruitment'] as VerticalType[]).map(vert => (
+                  {allVerticals.map(vert => (
                     <button
                       key={vert}
                       onClick={() => {
@@ -169,7 +196,7 @@ export default function CatalogPage() {
                   >
                     All Types
                   </button>
-                  {typesList.map(typeItem => (
+                  {allTypes.map(typeItem => (
                     <button
                       key={typeItem}
                       onClick={() => {
@@ -207,7 +234,6 @@ export default function CatalogPage() {
                   <ProjectTile
                     id={project.id}
                     title={project.title}
-                    client={project.client}
                     description={project.description}
                     image={project.image}
                     color={project.color}

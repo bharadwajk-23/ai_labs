@@ -7,7 +7,6 @@ import styles from './ProjectTile.module.css';
 interface ProjectTileProps {
   id: string;
   title: string;
-  client: string;
   description: string;
   index: number;
   image: string;
@@ -22,7 +21,6 @@ interface ProjectTileProps {
 export const ProjectTile = memo(function ProjectTile({
   id,
   title,
-  client,
   description,
   index,
   image,
@@ -81,7 +79,6 @@ export const ProjectTile = memo(function ProjectTile({
       <div className={styles.imageWrapper}>
         <img src={image} alt={title} className={styles.image} data-project-id={id} loading="lazy" />
         <div className={styles.imageOverlay} />
-        <span className={styles.clientTag}>{client}</span>
       </div>
 
       <div className={styles.body}>

@@ -20,5 +20,6 @@ export interface Project {
   sales_tagline?: string;
   time_savings?: string[];
   screenshots?: string[];
+  verticals?: string[];
 }
 

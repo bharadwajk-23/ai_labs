@@ -50,6 +50,24 @@ export default function RootLayout() {
   const handleContactSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (!contactName || !contactEmail || !contactMessage) return;
+
+    try {
+      const newInquiry = {
+        id: 'inq_' + Math.random().toString(36).substr(2, 9),
+        type: 'contact',
+        name: contactName,
+        email: contactEmail,
+        message: contactMessage,
+        date: new Date().toISOString(),
+        status: 'unread'
+      };
+      const existingInquiries = JSON.parse(localStorage.getItem('ys_admin_inquiries') || '[]');
+      existingInquiries.unshift(newInquiry);
+      localStorage.setItem('ys_admin_inquiries', JSON.stringify(existingInquiries));
+    } catch (err) {
+      console.error('Error saving inquiry:', err);
+    }
+
     setIsSubmitted(true);
   };
 
