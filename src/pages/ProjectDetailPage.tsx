@@ -5,14 +5,13 @@ import { FeatureCard } from '../components/FeatureCard';
 import NotFound from '../components/NotFound';
 import { useProject } from '../hooks/useProjects';
 import { useScrollReveal } from '../hooks/useScrollReveal';
-import type { Project } from '../data/schema';
+
 import styles from './ProjectDetailPage.module.css';
 
 export default function ProjectDetailPage() {
   const { id } = useParams();
   const project = useProject(id ?? '');
   const [projectState, setProjectState] = useState<typeof project>(project);
-  const [isAdmin, setIsAdmin] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
 
@@ -21,12 +20,6 @@ export default function ProjectDetailPage() {
     setSelectedImage(null);
     setIsLightboxOpen(false);
   }, [id, project]);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setIsAdmin(!!localStorage.getItem('ys_admin_token'));
-    }
-  }, []);
 
   // Auto-scrolling slideshow for screenshots
   useEffect(() => {
@@ -59,53 +52,8 @@ export default function ProjectDetailPage() {
   const [aboutRef, aboutRevealed] = useScrollReveal<HTMLDivElement>(0.05, true);
   const [ctaRef, ctaRevealed] = useScrollReveal<HTMLDivElement>(0.05, true);
   const [featuresRef, featuresRevealed] = useScrollReveal<HTMLDivElement>(0.05, true);
+  const [savingsRef, savingsRevealed] = useScrollReveal<HTMLDivElement>(0.05, true);
 
-  const handleDetailScreenshotsUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files;
-    if (!files || files.length === 0) return;
-
-    const promises = Array.from(files).map(file => {
-      return new Promise<string>((resolve) => {
-        const reader = new FileReader();
-        reader.onload = (event) => {
-          resolve(event.target?.result as string);
-        };
-        reader.readAsDataURL(file);
-      });
-    });
-
-    Promise.all(promises).then(base64Images => {
-      if (!projectState) return;
-
-      const currentScreenshots = projectState.screenshots ? [...projectState.screenshots] : [];
-      const updatedScreenshots = [...currentScreenshots, ...base64Images];
-
-      const updatedProject = {
-        ...projectState,
-        screenshots: updatedScreenshots
-      };
-
-      try {
-        const customProjectsStr = localStorage.getItem('ys_custom_projects') || '[]';
-        const customProjects = JSON.parse(customProjectsStr) as Project[];
-        const index = customProjects.findIndex(p => p.id === projectState.id);
-
-        if (index !== -1) {
-          customProjects[index] = updatedProject;
-        } else {
-          customProjects.push(updatedProject);
-        }
-        localStorage.setItem('ys_custom_projects', JSON.stringify(customProjects));
-        setProjectState(updatedProject);
-        
-        if (base64Images[0]) {
-          setSelectedImage(base64Images[0]);
-        }
-      } catch (err) {
-        console.error('Error saving uploaded screenshots:', err);
-      }
-    });
-  };
 
   if (!projectState) {
     return <NotFound message={`No project found with id "${id}"`} />;
@@ -193,7 +141,7 @@ export default function ProjectDetailPage() {
               )}
             </div>
             {/* Gallery Thumbnails */}
-            {(galleryImages.length > 0 || isAdmin) && (
+            {galleryImages.length > 0 && (
               <div className={styles.galleryContainer}>
                 {galleryImages.map((shot, idx) => {
                   const isActive = (selectedImage ?? projectState.image) === shot;
@@ -209,48 +157,6 @@ export default function ProjectDetailPage() {
                     </button>
                   );
                 })}
-
-                {/* Admin direct upload button */}
-                {isAdmin && (
-                  <div className={styles.adminUploadThumbnail}>
-                    <input
-                      type="file"
-                      multiple
-                      accept="image/*"
-                      onChange={handleDetailScreenshotsUpload}
-                      id="detail-screenshot-upload"
-                      className={styles.hiddenFileInput}
-                    />
-                    <label htmlFor="detail-screenshot-upload" className={styles.adminUploadBtn} title="Upload screenshots directly">
-                      ➕ Add Image
-                    </label>
-                  </div>
-                )}
-              </div>
-            )}
-
-            {/* Admin Dedicated Screenshots Upload Section */}
-            {isAdmin && (
-              <div className={styles.adminUploadSection}>
-                <h3 className={styles.adminUploadTitle}>
-                  📸 Project Screenshot Directory Upload
-                </h3>
-                <p className={styles.adminUploadDesc}>
-                  Select or drag multiple screenshots to showcase inside the gallery for this project directory.
-                </p>
-                <div className={styles.dropZone}>
-                  <input
-                    type="file"
-                    multiple
-                    accept="image/*"
-                    onChange={handleDetailScreenshotsUpload}
-                    id="detail-gallery-upload-box"
-                    className={styles.hiddenFileInput}
-                  />
-                  <label htmlFor="detail-gallery-upload-box" className={styles.dropZoneLabel}>
-                    <span>📤 Select Multiple Screenshot Files to Upload</span>
-                  </label>
-                </div>
               </div>
             )}
 
@@ -321,6 +227,30 @@ export default function ProjectDetailPage() {
                       <line x1="10" y1="14" x2="21" y2="3" />
                     </svg>
                   </a>
+                </div>
+              </div>
+            )}
+
+            {/* Time & Operational Savings (Sales Section) */}
+            {projectState.time_savings && projectState.time_savings.length > 0 && (
+              <div
+                ref={savingsRef}
+                className={`${styles.contentSection} reveal-item ${savingsRevealed ? 'revealed' : ''}`}
+                style={{ '--reveal-delay': isLoaded ? '0ms' : '350ms' } as CSSProperties}
+              >
+                <h2 className={styles.sectionTitle}>
+                  <span className={styles.sectionDot} /> Workload & Time Savings
+                </h2>
+                <div className={styles.savingsContainer}>
+                  {projectState.time_savings.map((point, index) => (
+                    <div key={index} className={styles.savingsCard}>
+                      <svg className={styles.clockIcon} width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="M12 6v6l4 2" />
+                      </svg>
+                      <p className={styles.savingsText}>{point}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
             )}
